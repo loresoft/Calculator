@@ -1,0 +1,1 @@
+jsc /out:JScript.Evalulator.dll /target:library JScript.Evalulator.js

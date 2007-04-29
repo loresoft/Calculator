@@ -49,6 +49,17 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MathParser\ExpressionType.cs" />
+    <Compile Include="MathParser\NumberExpression.cs" />
+    <Compile Include="MathParser\ExpressionBase.cs" />
+    <Compile Include="MathParser\ExpressionQueue.cs" />
+    <Compile Include="MathParser\FunctionExpression.cs" />
+    <Compile Include="MathParser\IExpression.cs" />
+    <Compile Include="MathParser\MathEvaluate.cs" />
+    <Compile Include="MathParser\MathEvaluator.cs" />
+    <Compile Include="MathParser\OperatorExpression.cs" />
+    <Compile Include="MathParser\ParseException.cs" />
+    <Compile Include="MathParser\VariableCollection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">

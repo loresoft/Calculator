@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{46271123-BEBD-4FF6-8B13-77D68A17C874}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoreSoft.Calculator", "LoreSoft.Calculator\LoreSoft.Calculator.csproj", "{46271123-BEBD-4FF6-8B13-77D68A17C874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Tests", "Calculator.Tests\Calculator.Tests.csproj", "{AD511AF2-5BD5-4EF2-8D0A-FF133FD0A989}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoreSoft.MathExpressions.Tests", "LoreSoft.MathExpressions.Tests\LoreSoft.MathExpressions.Tests.csproj", "{AD511AF2-5BD5-4EF2-8D0A-FF133FD0A989}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoreSoft.MathExpressions", "LoreSoft.MathExpressions\LoreSoft.MathExpressions.csproj", "{B6813448-FCE2-429C-81B5-9722FEA839B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,10 @@ Global
 		{AD511AF2-5BD5-4EF2-8D0A-FF133FD0A989}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD511AF2-5BD5-4EF2-8D0A-FF133FD0A989}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD511AF2-5BD5-4EF2-8D0A-FF133FD0A989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6813448-FCE2-429C-81B5-9722FEA839B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6813448-FCE2-429C-81B5-9722FEA839B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6813448-FCE2-429C-81B5-9722FEA839B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6813448-FCE2-429C-81B5-9722FEA839B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

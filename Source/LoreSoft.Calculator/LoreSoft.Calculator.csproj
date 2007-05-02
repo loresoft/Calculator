@@ -7,7 +7,7 @@
     <ProjectGuid>{46271123-BEBD-4FF6-8B13-77D68A17C874}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Calculator</RootNamespace>
+    <RootNamespace>LoreSoft.Calculator</RootNamespace>
     <AssemblyName>Calculator</AssemblyName>
     <ApplicationIcon>Calculator.ico</ApplicationIcon>
     <SignAssembly>true</SignAssembly>
@@ -46,12 +46,14 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CalculatorConstants.cs" />
     <Compile Include="CalculatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CalculatorForm.Designer.cs">
       <DependentUpon>CalculatorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageFileOptions.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

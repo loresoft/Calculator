@@ -59,7 +59,11 @@ namespace LoreSoft.MathExpressions
 
             string function = char.ToUpper(_function[0]) + _function.Substring(1);
             MethodInfo method = typeof (Math).GetMethod(
-                function, BindingFlags.Static | BindingFlags.Public);
+                function, 
+                BindingFlags.Static | BindingFlags.Public,
+                null,
+                new Type[] { typeof(double) },
+                null);
 
             if (method == null)
                 throw new InvalidOperationException(

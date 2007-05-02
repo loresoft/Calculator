@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Reflection;
 
-namespace Calculator
+namespace LoreSoft.Calculator
 {
     partial class AboutForm : Form
     {

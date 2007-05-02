@@ -1,16 +1,15 @@
-using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 
-namespace Calculator
+namespace LoreSoft.Calculator
 {
     internal static class NativeMethods
     {
         [DllImport("user32.dll")]
         static extern bool GetKeyboardState(byte[] lpKeyState);
 
+        [DebuggerNonUserCode]
         public static bool IsNumLockOn
         {
             get
@@ -21,6 +20,7 @@ namespace Calculator
             }
         }
 
+        [DebuggerNonUserCode]
         public static bool IsCapsLockOn
         {
             get
@@ -31,6 +31,7 @@ namespace Calculator
             }
         }
 
+        [DebuggerNonUserCode]
         public static bool IsScrollLockOn
         {
             get

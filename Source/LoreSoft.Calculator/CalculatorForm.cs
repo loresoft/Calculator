@@ -1,21 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using Calculator.Properties;
+using LoreSoft.Calculator.Properties;
 using LoreSoft.MathExpressions;
 
-namespace Calculator
+namespace LoreSoft.Calculator
 {
     public partial class CalculatorForm : Form
     {
         private MathEvaluator _eval = new MathEvaluator();
-        private string _answer = string.Empty;
         private List<string> _history = new List<string>();
         private int _historyIndex = 0;
         private Stopwatch watch = new Stopwatch();
@@ -23,10 +20,32 @@ namespace Calculator
         public CalculatorForm()
         {
             InitializeComponent();
-            Application.Idle += new EventHandler(Application_Idle);
+            InitializeSettings();
+            Application.Idle += new EventHandler(OnApplicationIdle);
         }
 
-        private void Application_Idle(object sender, EventArgs e)
+        private void InitializeSettings()
+        {
+            SuspendLayout();
+            if (Settings.Default["CalculatorLocation"] != null)
+                Location = Settings.Default.CalculatorLocation;
+            if (Settings.Default["CalculatorSize"] != null)
+                Size = Settings.Default.CalculatorSize;
+            if (Settings.Default["CalculatorWindowState"] != null)
+                WindowState = Settings.Default.CalculatorWindowState;
+            if (Settings.Default["HistoryFont"] != null)
+                historyRichTextBox.Font = Settings.Default.HistoryFont;
+            if (Settings.Default["InputFont"] != null)
+                inputTextBox.Font = Settings.Default.InputFont;
+
+            replaceCalculatorToolStripMenuItem.Checked = (Application.ExecutablePath.Equals(
+                ImageFileOptions.GetDebugger(CalculatorConstants.WindowsCalculatorName),
+                StringComparison.OrdinalIgnoreCase));
+
+            ResumeLayout(true);
+        }
+
+        private void OnApplicationIdle(object sender, EventArgs e)
         {
             numLockToolStripStatusLabel.Text = NativeMethods.IsNumLockOn ? "NUM" : string.Empty;
             answerToolStripStatusLabel.Text = "Answer: " + _eval.Answer;
@@ -94,21 +113,8 @@ namespace Calculator
 
         private void CalculatorForm_Load(object sender, EventArgs e)
         {
-            SuspendLayout();
-            if (Settings.Default.Context.Contains("CalculatorLocation"))
-                Location = Settings.Default.CalculatorLocation;
-            if (Settings.Default.Context.Contains("CalculatorSize"))
-                Size = Settings.Default.CalculatorSize;
-            if (Settings.Default.Context.Contains("CalculatorWindowState"))
-                WindowState = Settings.Default.CalculatorWindowState;
-            if (Settings.Default.Context.Contains("HistoryFont"))
-                historyRichTextBox.Font = Settings.Default.HistoryFont;
-            if (Settings.Default.Context.Contains("InputFont"))
-                inputTextBox.Font = Settings.Default.InputFont;
-
             inputTextBox.Focus();
             inputTextBox.Select();
-            ResumeLayout();
         }
 
         private void CalculatorForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -238,6 +244,40 @@ namespace Calculator
             inputTextBox.Font = fontDialog.Font;
         }
 
+        private void replaceCalculatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (replaceCalculatorToolStripMenuItem.Checked)
+                ImageFileOptions.SetDebugger(
+                    CalculatorConstants.WindowsCalculatorName,
+                    Application.ExecutablePath);
+            else
+                ImageFileOptions.ClearDebugger(
+                    CalculatorConstants.WindowsCalculatorName);
+        }
+
+        private void function_Click(object sender, EventArgs e)
+        {
+            ToolStripItem item = sender as ToolStripItem;
+            if (item == null || item.Tag == null)
+                return;
+
+            string insert = item.Tag.ToString();
+
+            int start = inputTextBox.SelectionStart;
+            int length = inputTextBox.SelectionLength;
+            int pad = insert.IndexOf('|');
+
+
+            if (pad < 0 && length == 0)
+                pad = insert.Length;
+            else if (pad >= 0 && length > 0)
+                pad = insert.Length;
+
+            inputTextBox.SuspendLayout();
+            inputTextBox.Paste(insert.Replace("|", inputTextBox.SelectedText));
+            inputTextBox.Select(start + pad + length, 0);
+            inputTextBox.ResumeLayout();
+        }
 
     }
 }

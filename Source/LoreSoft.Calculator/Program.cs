@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Calculator
+namespace LoreSoft.Calculator
 {
     static class Program
     {

@@ -1,4 +1,4 @@
-namespace Calculator
+namespace LoreSoft.Calculator
 {
     partial class AboutForm
     {

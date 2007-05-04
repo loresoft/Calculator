@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using LoreSoft.MathExpressions.Properties;
+using System.Globalization;
 
 namespace LoreSoft.MathExpressions
 {
@@ -11,7 +12,7 @@ namespace LoreSoft.MathExpressions
     {
         // must be sorted
         /// <summary>The supported math functions by this class.</summary>
-        public static readonly string[] MathFunctions = new string[]
+        private static readonly string[] mathFunctions = new string[]
             {
                 "abs", "acos", "asin", "atan", "ceiling", "cos", "cosh", "exp",
                 "floor", "log", "log10", "sin", "sinh", "sqrt", "tan", "tanh"
@@ -32,7 +33,7 @@ namespace LoreSoft.MathExpressions
 
             if (validate && !IsFunction(function))
                 throw new ArgumentException(
-                    string.Format(Resources.InvalidFunctionName, _function),
+                    string.Format(CultureInfo.CurrentCulture, Resources.InvalidFunctionName, _function),
                     "function");
 
             _function = function;
@@ -57,7 +58,7 @@ namespace LoreSoft.MathExpressions
         {
             base.Validate(numbers);
 
-            string function = char.ToUpper(_function[0]) + _function.Substring(1);
+            string function = char.ToUpperInvariant(_function[0]) + _function.Substring(1);
             MethodInfo method = typeof (Math).GetMethod(
                 function, 
                 BindingFlags.Static | BindingFlags.Public,
@@ -67,7 +68,8 @@ namespace LoreSoft.MathExpressions
 
             if (method == null)
                 throw new InvalidOperationException(
-                    string.Format(Resources.InvalidFunctionName, _function));
+                    string.Format(CultureInfo.CurrentCulture, 
+                        Resources.InvalidFunctionName, _function));
 
             object[] parameters = new object[numbers.Length];
             Array.Copy(numbers, parameters, numbers.Length);
@@ -87,7 +89,7 @@ namespace LoreSoft.MathExpressions
         public static bool IsFunction(string function)
         {
             return (Array.BinarySearch(
-                        MathFunctions, function,
+                        mathFunctions, function,
                         StringComparer.OrdinalIgnoreCase) >= 0);
         }
 
@@ -97,6 +99,15 @@ namespace LoreSoft.MathExpressions
         public override string ToString()
         {
             return _function;
+        }
+
+        /// <summary>
+        /// Gets the function names.
+        /// </summary>
+        /// <returns>An array of function names.</returns>
+        public static string[] GetFunctionNames()
+        {
+            return (string[])mathFunctions.Clone();
         }
     }
 }

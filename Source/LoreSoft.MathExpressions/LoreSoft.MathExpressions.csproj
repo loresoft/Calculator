@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\LoreSoft.MathExpressions.XML</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,12 +38,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertExpression.cs" />
     <Compile Include="ExpressionBase.cs" />
     <Compile Include="FunctionExpression.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IExpression.cs" />
     <Compile Include="MathEvaluate.cs" />
     <Compile Include="MathEvaluator.cs" />
     <Compile Include="MathOperators.cs" />
+    <Compile Include="Metadata\AttributeReader.cs" />
     <Compile Include="NumberExpression.cs" />
     <Compile Include="OperatorExpression.cs" />
     <Compile Include="ParseException.cs" />
@@ -52,7 +56,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="VariableCollection.cs" />
+    <Compile Include="Metadata\AbbreviationAttribute.cs" />
+    <Compile Include="UnitConversion\LengthConverter.cs" />
+    <Compile Include="UnitConversion\MassConverter.cs" />
+    <Compile Include="UnitConversion\SpeedConverter.cs" />
+    <Compile Include="UnitConversion\TemperatureConverter.cs" />
+    <Compile Include="UnitConversion\TimeConverter.cs" />
+    <Compile Include="UnitConversion\UnitType.cs" />
+    <Compile Include="UnitConversion\VolumeConverter.cs" />
+    <Compile Include="VariableDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

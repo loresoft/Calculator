@@ -1,0 +1,44 @@
+﻿<project schemaVersion="1.4.0.0">
+    <assemblies>
+        <assembly assemblyPath="..\Source\LoreSoft.MathExpressions\bin\Debug\LoreSoft.MathExpressions.dll" xmlCommentsPath="..\Source\LoreSoft.MathExpressions\bin\Debug\LoreSoft.MathExpressions.xml" commentsOnly="False" />
+    </assemblies>
+    <namespaceSummaries>
+        <namespaceSummaryItem name="" isDocumented="False" />
+        <namespaceSummaryItem name="LoreSoft.MathExpressions" isDocumented="True">Contains classes parse and evaluate a math expression.</namespaceSummaryItem>
+        <namespaceSummaryItem name="LoreSoft.MathExpressions.Metadata" isDocumented="True">Contains classes for working with metadata.</namespaceSummaryItem>
+        <namespaceSummaryItem name="LoreSoft.MathExpressions.Properties" isDocumented="False" />
+        <namespaceSummaryItem name="LoreSoft.MathExpressions.UnitConversion" isDocumented="True">Contains classes used for unit conversion.</namespaceSummaryItem>
+    </namespaceSummaries>
+    <ProjectSummary>LoreSoft Math Expression Parser</ProjectSummary>
+    <MissingTags>Summary, Parameter, Returns, AutoDocumentCtors</MissingTags>
+    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
+    <HtmlHelp1xCompilerPath path="" />
+    <HtmlHelp2xCompilerPath path="" />
+    <OutputPath>.\Help\</OutputPath>
+    <SandcastlePath path="" />
+    <WorkingPath path="" />
+    <CleanIntermediates>True</CleanIntermediates>
+    <HelpFileFormat>HtmlHelp1x</HelpFileFormat>
+    <PurgeDuplicateTopics>True</PurgeDuplicateTopics>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <FrameworkVersion>2.0.50727</FrameworkVersion>
+    <BinaryTOC>True</BinaryTOC>
+    <IncludeFavorites>False</IncludeFavorites>
+    <Preliminary>False</Preliminary>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <RootNamespaceTitle />
+    <HelpTitle>LoreSoft Math Expression Parser</HelpTitle>
+    <HtmlHelpName>LoreSoft.MathExpressions</HtmlHelpName>
+    <Language>en-US</Language>
+    <CopyrightHref />
+    <CopyrightText>Copyright © LoreSoft 2007</CopyrightText>
+    <FeedbackEMailAddress />
+    <HeaderText />
+    <FooterText />
+    <ProjectLinkType>Local</ProjectLinkType>
+    <SdkLinkType>Msdn</SdkLinkType>
+    <PresentationStyle>Prototype</PresentationStyle>
+    <NamingMethod>MemberName</NamingMethod>
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+</project>

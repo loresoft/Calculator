@@ -7,6 +7,10 @@ using System.Text;
 using System.Windows.Forms;
 using LoreSoft.Calculator.Properties;
 using LoreSoft.MathExpressions;
+using LoreSoft.MathExpressions.UnitConversion;
+using LoreSoft.MathExpressions.Metadata;
+using System.Globalization;
+using System.Reflection;
 
 namespace LoreSoft.Calculator
 {
@@ -81,9 +85,9 @@ namespace LoreSoft.Calculator
             {
                 answer = _eval.Evaluate(input).ToString();
             }
-            catch (ParseException ex)
+            catch (Exception ex)
             {
-                answer = "Error: " + ex.Message;
+                answer = ex.Message;
                 hasError = true;
             }
             watch.Stop();
@@ -279,5 +283,120 @@ namespace LoreSoft.Calculator
             inputTextBox.ResumeLayout();
         }
 
+        private void AddToMenuItem<T>(ToolStripMenuItem p)
+            where T : struct, IComparable, IFormattable, IConvertible
+        {
+            Type enumType = typeof(T);
+            int[] a = (int[])Enum.GetValues(enumType);
+            
+            p.DropDownItems.Clear();
+            for (int x = 0; x < a.Length; x++)
+            {
+                MemberInfo parentInfo = GetMemberInfo(enumType, Enum.GetName(enumType, x));
+                string parrentKey = AttributeReader.GetAbbreviation(parentInfo);
+                string parrentName = AttributeReader.GetDescription(parentInfo);
+
+                ToolStripMenuItem t = new ToolStripMenuItem(parrentName);
+                p.DropDownItems.Add(t);
+                
+                for (int i = 0; i < a.Length; i++)
+                {
+                    if (x == i)
+                        continue;
+
+                    MemberInfo childInfo = GetMemberInfo(enumType, Enum.GetName(enumType, i));
+                    string childName = AttributeReader.GetDescription(childInfo);
+                    string childKey = AttributeReader.GetAbbreviation(childInfo);
+
+                    string key = string.Format(
+                        CultureInfo.InvariantCulture,
+                        ConvertExpression.ExpressionFormat,
+                        parrentKey,
+                        childKey);
+
+                    ToolStripMenuItem s = new ToolStripMenuItem(childName);
+                    s.Click += new EventHandler(convert_Click);
+                    s.Tag = key;
+
+                    t.DropDownItems.Add(s);
+                }
+            }
+        }
+
+        private static MemberInfo GetMemberInfo(Type type, string name)
+        {
+            MemberInfo[] info = type.GetMember(name);
+            if (info == null || info.Length == 0)
+                return null;
+
+            return info[0];
+        }
+
+        private void lengthToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            if (lengthToolStripMenuItem.DropDownItems.Count > 1)
+                return;
+
+            AddToMenuItem<LengthUnit>(lengthToolStripMenuItem);
+        }
+
+        private void massToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            if (massToolStripMenuItem.DropDownItems.Count > 1)
+                return;
+
+            AddToMenuItem<MassUnit>(massToolStripMenuItem);
+
+        }
+
+        private void speedToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            if (speedToolStripMenuItem.DropDownItems.Count > 1)
+                return;
+
+            AddToMenuItem<SpeedUnit>(speedToolStripMenuItem);
+
+        }
+
+        private void temperatureToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            if (temperatureToolStripMenuItem.DropDownItems.Count > 1)
+                return;
+            
+            AddToMenuItem<TemperatureUnit>(temperatureToolStripMenuItem);
+        }
+
+        private void timeToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            if (timeToolStripMenuItem.DropDownItems.Count > 1)
+                return;
+            
+            AddToMenuItem<TimeUnit>(timeToolStripMenuItem);
+        }
+
+        private void volumeToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            if (volumeToolStripMenuItem.DropDownItems.Count > 1)
+                return;
+
+            AddToMenuItem<VolumeUnit>(volumeToolStripMenuItem);
+        }
+
+        private void convert_Click(object sender, EventArgs e)
+        {
+            ToolStripItem item = sender as ToolStripItem;
+            if (item == null || item.Tag == null)
+                return;
+
+            string insert = item.Tag.ToString();
+            int start = inputTextBox.SelectionStart;
+            int length = inputTextBox.SelectionLength;
+            int pad = insert.Length;
+
+            inputTextBox.SuspendLayout();
+            inputTextBox.Paste(insert);
+            inputTextBox.Select(start + pad + length, 0);
+            inputTextBox.ResumeLayout();
+        }
     }
 }

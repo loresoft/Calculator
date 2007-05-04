@@ -4,20 +4,35 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using LoreSoft.MathExpressions.Properties;
+using System.Globalization;
 
 namespace LoreSoft.MathExpressions
 {
     /// <summary>
     /// Evaluate math expressions
     /// </summary>
-    public class MathEvaluator
+    /// <example>Using the MathEvaluator to calculate a math expression.
+    /// <code>
+    /// MathEvaluator eval = new MathEvaluator();
+    /// //basic math
+    /// double result = eval.Evaluate("(2 + 1) * (1 + 2)");
+    /// //calling a function
+    /// result = eval.Evaluate("sqrt(4)");
+    /// //evaluate trigonometric 
+    /// result = eval.Evaluate("cos(pi * 45 / 180.0)");
+    /// //convert inches to feet
+    /// result = eval.Evaluate("12 [in->ft]");
+    /// //use variable
+    /// result = eval.Evaluate("answer * 10");
+    /// </code>
+    /// </example>
+    public class MathEvaluator : IDisposable
     {
         /// <summary>The name of the answer variable.</summary>
         /// <seealso cref="Variables"/>
         public const string AnswerVariable = "answer";
 
-
-        //member scope to optimize reuse
+        //instance scope to optimize reuse
         private Stack<string> _symbolStack;
         private Queue<IExpression> _expressionQueue;
         private Dictionary<string, IExpression> _expressionCache;
@@ -33,8 +48,8 @@ namespace LoreSoft.MathExpressions
         /// </summary>
         public MathEvaluator()
         {
-            _variables = new VariableCollection(this);
-            _innerFunctions = new List<string>(FunctionExpression.MathFunctions);
+            _variables = new VariableDictionary(this);
+            _innerFunctions = new List<string>(FunctionExpression.GetFunctionNames());
             _functions = new ReadOnlyCollection<string>(_innerFunctions);
             _expressionCache = new Dictionary<string, IExpression>(StringComparer.OrdinalIgnoreCase);
             _symbolStack = new Stack<string>();
@@ -44,13 +59,13 @@ namespace LoreSoft.MathExpressions
             _parameters = new Stack<double>(2);
         }
 
-        private VariableCollection _variables;
+        private VariableDictionary _variables;
 
         /// <summary>
         /// Gets the variables collections.
         /// </summary>
         /// <value>The variables for <see cref="MathEvaluator"/>.</value>
-        public VariableCollection Variables
+        public VariableDictionary Variables
         {
             get { return _variables; }
         }
@@ -67,6 +82,7 @@ namespace LoreSoft.MathExpressions
 
         /// <summary>Gets the answer from the last evaluation.</summary>
         /// <value>The answer variable value.</value>
+        /// <seealso cref="Variables"/>
         public double Answer
         {
             get { return _variables[AnswerVariable]; }
@@ -88,7 +104,7 @@ namespace LoreSoft.MathExpressions
 
             ParseExpressionToQueue();
 
-            double result = EvaluateQueue();
+            double result = CalculateFromQueue();
 
             _variables[AnswerVariable] = result;
             return result;
@@ -110,8 +126,9 @@ namespace LoreSoft.MathExpressions
             if (expression.Evaluate == null)
                 throw new ArgumentException(Resources.EvaluatePropertyCanNotBeNull, "expression");
             if (_innerFunctions.BinarySearch(functionName) >= 0)
-                throw new ArgumentException(string.Format(Resources.FunctionNameRegistered, functionName),
-                                            "functionName");
+                throw new ArgumentException(
+                    string.Format(CultureInfo.CurrentCulture,
+                        Resources.FunctionNameRegistered, functionName), "functionName");
 
             _innerFunctions.Add(functionName);
             _innerFunctions.Sort();
@@ -130,7 +147,7 @@ namespace LoreSoft.MathExpressions
         {
             do
             {
-                char c = (char) _expressionReader.Read();
+                char c = (char)_expressionReader.Read();
 
                 if (char.IsWhiteSpace(c))
                     continue;
@@ -150,10 +167,45 @@ namespace LoreSoft.MathExpressions
                 if (TryEndGroup(c))
                     continue;
 
+                if (TryConvert(c))
+                    continue;
+
                 throw new ParseException(Resources.InvalidCharacterEncountered + c);
             } while (_expressionReader.Peek() != -1);
 
             ProcessSymbolStack();
+        }
+
+        private bool TryConvert(char c)
+        {
+            if (c != '[')
+                return false;
+
+            _buffer.Length = 0;
+            _buffer.Append(c);
+
+            char p = (char)_expressionReader.Peek();
+            while (char.IsLetter(p) || char.IsWhiteSpace(p) || p == '-' || p == '>' || p == ']')
+            {
+                if (!char.IsWhiteSpace(p))
+                    _buffer.Append((char)_expressionReader.Read());
+                else
+                    _expressionReader.Read();
+
+                if (p == ']')
+                    break;
+
+                p = (char)_expressionReader.Peek();
+            }
+
+            if (ConvertExpression.IsConvertExpression(_buffer.ToString()))
+            {
+                IExpression e = GetExpressionFromSymbol(_buffer.ToString());
+                _expressionQueue.Enqueue(e);
+                return true;
+            }
+
+            throw new ParseException(Resources.InvalidConvertionExpression + _buffer);
         }
 
         private bool TryString(char c)
@@ -164,11 +216,11 @@ namespace LoreSoft.MathExpressions
             _buffer.Length = 0;
             _buffer.Append(c);
 
-            char p = (char) _expressionReader.Peek();
+            char p = (char)_expressionReader.Peek();
             while (char.IsLetter(p))
             {
-                _buffer.Append((char) _expressionReader.Read());
-                p = (char) _expressionReader.Peek();
+                _buffer.Append((char)_expressionReader.Read());
+                p = (char)_expressionReader.Peek();
             }
 
             if (_variables.ContainsKey(_buffer.ToString()))
@@ -264,11 +316,11 @@ namespace LoreSoft.MathExpressions
             _buffer.Length = 0;
             _buffer.Append(c);
 
-            char p = (char) _expressionReader.Peek();
+            char p = (char)_expressionReader.Peek();
             while (NumberExpression.IsNumber(p))
             {
-                _buffer.Append((char) _expressionReader.Read());
-                p = (char) _expressionReader.Peek();
+                _buffer.Append((char)_expressionReader.Read());
+                p = (char)_expressionReader.Peek();
             }
 
             double value;
@@ -310,6 +362,11 @@ namespace LoreSoft.MathExpressions
                 e = new FunctionExpression(p, false);
                 _expressionCache.Add(p, e);
             }
+            else if (ConvertExpression.IsConvertExpression(p))
+            {
+                e = new ConvertExpression(p);
+                _expressionCache.Add(p, e);
+            }
             else
                 throw new ParseException(Resources.InvalidSymbolOnStack + p);
 
@@ -324,7 +381,7 @@ namespace LoreSoft.MathExpressions
             return 1;
         }
 
-        private double EvaluateQueue()
+        private double CalculateFromQueue()
         {
             double result;
             _calculationStack.Clear();
@@ -332,7 +389,7 @@ namespace LoreSoft.MathExpressions
             foreach (IExpression expression in _expressionQueue)
             {
                 if (_calculationStack.Count < expression.ArgumentCount)
-                    throw new ParseException(Resources.InvalidMathExpression);
+                    throw new ParseException(Resources.NotEnoughNumbers + expression);
 
                 _parameters.Clear();
                 for (int i = 0; i < expression.ArgumentCount; i++)
@@ -344,5 +401,37 @@ namespace LoreSoft.MathExpressions
             result = _calculationStack.Pop();
             return result;
         }
+
+        #region IDisposable Members
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and  managed resources
+        /// </summary>
+        /// <param name="disposing">
+        /// <c>true</c> to release both managed and unmanaged resources; 
+        /// <c>false</c> to release only unmanaged resources.
+        /// </param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_expressionReader != null)
+                {
+                    _expressionReader.Dispose();
+                    _expressionReader = null;
+                }
+            }
+        }
+
+        #endregion
     }
 }

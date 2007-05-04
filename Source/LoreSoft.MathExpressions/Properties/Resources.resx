@@ -156,4 +156,10 @@
   <data name="InvalidMathExpression" xml:space="preserve">
     <value>Invalid math expression.</value>
   </data>
+  <data name="InvalidConvertionExpression" xml:space="preserve">
+    <value>Invalid convertion expression: </value>
+  </data>
+  <data name="NotEnoughNumbers" xml:space="preserve">
+    <value>Invalid number for expression: </value>
+  </data>
 </root>

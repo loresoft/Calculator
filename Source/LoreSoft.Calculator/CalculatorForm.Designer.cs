@@ -51,7 +51,35 @@ namespace LoreSoft.Calculator
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.replaceCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.basicOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subtractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.multiplyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.divideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modulusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.powerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.sqrtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.absToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trigFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.coshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sinhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tanhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.atanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.log10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conversionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.speedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.temperatureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.volumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
@@ -62,6 +90,8 @@ namespace LoreSoft.Calculator
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.undoToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.clearHistoryToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.historyPanel = new System.Windows.Forms.Panel();
             this.historyRichTextBox = new System.Windows.Forms.RichTextBox();
             this.historyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -85,38 +115,14 @@ namespace LoreSoft.Calculator
             this.numLockToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.basicOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trigFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logFunctionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.subtractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.multiplyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.divideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modulusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.powerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sqrtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.absToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.asinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.atanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.expToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.log10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.coshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sinhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tanhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.clearHistoryToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.distanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.weightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.volumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.temperatureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.speedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lengthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.massToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lengthDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.massDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.speedDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.temperatureDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.volumeDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
             this.historyPanel.SuspendLayout();
@@ -309,18 +315,281 @@ namespace LoreSoft.Calculator
             this.functionsToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.functionsToolStripMenuItem.Text = "F&unctions";
             // 
+            // basicOperationsToolStripMenuItem
+            // 
+            this.basicOperationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.subtractToolStripMenuItem,
+            this.multiplyToolStripMenuItem,
+            this.divideToolStripMenuItem,
+            this.modulusToolStripMenuItem,
+            this.powerToolStripMenuItem,
+            this.toolStripSeparator11,
+            this.sqrtToolStripMenuItem,
+            this.absToolStripMenuItem});
+            this.basicOperationsToolStripMenuItem.Name = "basicOperationsToolStripMenuItem";
+            this.basicOperationsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.basicOperationsToolStripMenuItem.Text = "Basic Operations";
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.addToolStripMenuItem.Tag = "+";
+            this.addToolStripMenuItem.Text = "add";
+            this.addToolStripMenuItem.ToolTipText = "Adds two numbers.";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // subtractToolStripMenuItem
+            // 
+            this.subtractToolStripMenuItem.Name = "subtractToolStripMenuItem";
+            this.subtractToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.subtractToolStripMenuItem.Tag = "-";
+            this.subtractToolStripMenuItem.Text = "subtract";
+            this.subtractToolStripMenuItem.ToolTipText = "Subtracts two numbers ";
+            this.subtractToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // multiplyToolStripMenuItem
+            // 
+            this.multiplyToolStripMenuItem.Name = "multiplyToolStripMenuItem";
+            this.multiplyToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.multiplyToolStripMenuItem.Tag = "*";
+            this.multiplyToolStripMenuItem.Text = "multiply";
+            this.multiplyToolStripMenuItem.ToolTipText = "Multiplies two numbers.";
+            this.multiplyToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // divideToolStripMenuItem
+            // 
+            this.divideToolStripMenuItem.Name = "divideToolStripMenuItem";
+            this.divideToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.divideToolStripMenuItem.Tag = "/";
+            this.divideToolStripMenuItem.Text = "divide";
+            this.divideToolStripMenuItem.ToolTipText = "Divides two numbers.";
+            this.divideToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // modulusToolStripMenuItem
+            // 
+            this.modulusToolStripMenuItem.Name = "modulusToolStripMenuItem";
+            this.modulusToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.modulusToolStripMenuItem.Tag = "%";
+            this.modulusToolStripMenuItem.Text = "modulus";
+            this.modulusToolStripMenuItem.ToolTipText = "Divides two numbers and returns only the remainder.";
+            this.modulusToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // powerToolStripMenuItem
+            // 
+            this.powerToolStripMenuItem.Name = "powerToolStripMenuItem";
+            this.powerToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.powerToolStripMenuItem.Tag = "^";
+            this.powerToolStripMenuItem.Text = "power";
+            this.powerToolStripMenuItem.ToolTipText = "Raises a number to the power of another number.";
+            this.powerToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(118, 6);
+            // 
+            // sqrtToolStripMenuItem
+            // 
+            this.sqrtToolStripMenuItem.Name = "sqrtToolStripMenuItem";
+            this.sqrtToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.sqrtToolStripMenuItem.Tag = "sqrt(|)";
+            this.sqrtToolStripMenuItem.Text = "sqrt";
+            this.sqrtToolStripMenuItem.ToolTipText = "Returns the square root of a specified number.";
+            this.sqrtToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // absToolStripMenuItem
+            // 
+            this.absToolStripMenuItem.Name = "absToolStripMenuItem";
+            this.absToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.absToolStripMenuItem.Tag = "abs(|)";
+            this.absToolStripMenuItem.Text = "abs";
+            this.absToolStripMenuItem.ToolTipText = "Returns the absolute value of a specified number. ";
+            this.absToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // trigFunctionsToolStripMenuItem
+            // 
+            this.trigFunctionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cosToolStripMenuItem,
+            this.coshToolStripMenuItem,
+            this.acosToolStripMenuItem,
+            this.sinToolStripMenuItem,
+            this.sinhToolStripMenuItem,
+            this.asinToolStripMenuItem,
+            this.tanToolStripMenuItem,
+            this.tanhToolStripMenuItem,
+            this.atanToolStripMenuItem});
+            this.trigFunctionsToolStripMenuItem.Name = "trigFunctionsToolStripMenuItem";
+            this.trigFunctionsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.trigFunctionsToolStripMenuItem.Text = "Trig Functions";
+            // 
+            // cosToolStripMenuItem
+            // 
+            this.cosToolStripMenuItem.Name = "cosToolStripMenuItem";
+            this.cosToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.cosToolStripMenuItem.Tag = "cos(|)";
+            this.cosToolStripMenuItem.Text = "cos";
+            this.cosToolStripMenuItem.ToolTipText = "Returns the cosine of the specified angle.";
+            this.cosToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // coshToolStripMenuItem
+            // 
+            this.coshToolStripMenuItem.Name = "coshToolStripMenuItem";
+            this.coshToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.coshToolStripMenuItem.Tag = "cosh(|)";
+            this.coshToolStripMenuItem.Text = "cosh";
+            this.coshToolStripMenuItem.ToolTipText = "Returns the hyperbolic cosine of the specified angle. ";
+            this.coshToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // acosToolStripMenuItem
+            // 
+            this.acosToolStripMenuItem.Name = "acosToolStripMenuItem";
+            this.acosToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.acosToolStripMenuItem.Tag = "acos(|)";
+            this.acosToolStripMenuItem.Text = "acos";
+            this.acosToolStripMenuItem.ToolTipText = "Returns the angle whose cosine is the specified number.";
+            this.acosToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // sinToolStripMenuItem
+            // 
+            this.sinToolStripMenuItem.Name = "sinToolStripMenuItem";
+            this.sinToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.sinToolStripMenuItem.Tag = "sin(|)";
+            this.sinToolStripMenuItem.Text = "sin";
+            this.sinToolStripMenuItem.ToolTipText = "Returns the sine of the specified angle. ";
+            this.sinToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // sinhToolStripMenuItem
+            // 
+            this.sinhToolStripMenuItem.Name = "sinhToolStripMenuItem";
+            this.sinhToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.sinhToolStripMenuItem.Tag = "sinh(|)";
+            this.sinhToolStripMenuItem.Text = "sinh";
+            this.sinhToolStripMenuItem.ToolTipText = "Returns the hyperbolic sine of the specified angle.";
+            this.sinhToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // asinToolStripMenuItem
+            // 
+            this.asinToolStripMenuItem.Name = "asinToolStripMenuItem";
+            this.asinToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.asinToolStripMenuItem.Tag = "asin(|)";
+            this.asinToolStripMenuItem.Text = "asin";
+            this.asinToolStripMenuItem.ToolTipText = "Returns the angle whose sine is the specified number.";
+            this.asinToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // tanToolStripMenuItem
+            // 
+            this.tanToolStripMenuItem.Name = "tanToolStripMenuItem";
+            this.tanToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.tanToolStripMenuItem.Tag = "tan(|)";
+            this.tanToolStripMenuItem.Text = "tan";
+            this.tanToolStripMenuItem.ToolTipText = "Returns the tangent of the specified angle.";
+            this.tanToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // tanhToolStripMenuItem
+            // 
+            this.tanhToolStripMenuItem.Name = "tanhToolStripMenuItem";
+            this.tanhToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.tanhToolStripMenuItem.Tag = "tanh(|)";
+            this.tanhToolStripMenuItem.Text = "tanh";
+            this.tanhToolStripMenuItem.ToolTipText = "Returns the hyperbolic tangent of the specified angle.";
+            this.tanhToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // atanToolStripMenuItem
+            // 
+            this.atanToolStripMenuItem.Name = "atanToolStripMenuItem";
+            this.atanToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.atanToolStripMenuItem.Tag = "atan(|)";
+            this.atanToolStripMenuItem.Text = "atan";
+            this.atanToolStripMenuItem.ToolTipText = "Returns the angle whose tangent is the specified number.";
+            this.atanToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // logFunctionsToolStripMenuItem
+            // 
+            this.logFunctionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.expToolStripMenuItem,
+            this.logToolStripMenuItem,
+            this.log10ToolStripMenuItem});
+            this.logFunctionsToolStripMenuItem.Name = "logFunctionsToolStripMenuItem";
+            this.logFunctionsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.logFunctionsToolStripMenuItem.Text = "Log Functions";
+            // 
+            // expToolStripMenuItem
+            // 
+            this.expToolStripMenuItem.Name = "expToolStripMenuItem";
+            this.expToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.expToolStripMenuItem.Tag = "exp(|)";
+            this.expToolStripMenuItem.Text = "exp";
+            this.expToolStripMenuItem.ToolTipText = "Returns e raised to the specified power.";
+            this.expToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // logToolStripMenuItem
+            // 
+            this.logToolStripMenuItem.Name = "logToolStripMenuItem";
+            this.logToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.logToolStripMenuItem.Tag = "log(|)";
+            this.logToolStripMenuItem.Text = "log";
+            this.logToolStripMenuItem.ToolTipText = "Returns the logarithm of a specified number.";
+            this.logToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
+            // log10ToolStripMenuItem
+            // 
+            this.log10ToolStripMenuItem.Name = "log10ToolStripMenuItem";
+            this.log10ToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.log10ToolStripMenuItem.Tag = "log10(|)";
+            this.log10ToolStripMenuItem.Text = "log10";
+            this.log10ToolStripMenuItem.ToolTipText = "Returns the base 10 logarithm of a specified number.";
+            this.log10ToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            // 
             // conversionsToolStripMenuItem
             // 
             this.conversionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.distanceToolStripMenuItem,
+            this.lengthToolStripMenuItem,
+            this.massToolStripMenuItem,
             this.speedToolStripMenuItem,
             this.temperatureToolStripMenuItem,
             this.timeToolStripMenuItem,
-            this.volumeToolStripMenuItem,
-            this.weightToolStripMenuItem});
+            this.volumeToolStripMenuItem});
             this.conversionsToolStripMenuItem.Name = "conversionsToolStripMenuItem";
             this.conversionsToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
             this.conversionsToolStripMenuItem.Text = "&Conversions";
+            // 
+            // speedToolStripMenuItem
+            // 
+            this.speedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.speedDummyToolStripMenuItem});
+            this.speedToolStripMenuItem.Name = "speedToolStripMenuItem";
+            this.speedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.speedToolStripMenuItem.Text = "&Speed";
+            this.speedToolStripMenuItem.DropDownOpening += new System.EventHandler(this.speedToolStripMenuItem_DropDownOpening);
+            // 
+            // temperatureToolStripMenuItem
+            // 
+            this.temperatureToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.temperatureDummyToolStripMenuItem});
+            this.temperatureToolStripMenuItem.Name = "temperatureToolStripMenuItem";
+            this.temperatureToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.temperatureToolStripMenuItem.Text = "Tem&perature";
+            this.temperatureToolStripMenuItem.DropDownOpening += new System.EventHandler(this.temperatureToolStripMenuItem_DropDownOpening);
+            // 
+            // timeToolStripMenuItem
+            // 
+            this.timeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.timeDummyToolStripMenuItem});
+            this.timeToolStripMenuItem.Name = "timeToolStripMenuItem";
+            this.timeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.timeToolStripMenuItem.Text = "&Time";
+            this.timeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.timeToolStripMenuItem_DropDownOpening);
+            // 
+            // volumeToolStripMenuItem
+            // 
+            this.volumeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.volumeDummyToolStripMenuItem});
+            this.volumeToolStripMenuItem.Name = "volumeToolStripMenuItem";
+            this.volumeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.volumeToolStripMenuItem.Text = "&Volume";
+            this.volumeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.volumeToolStripMenuItem_DropDownOpening);
             // 
             // helpToolStripMenuItem
             // 
@@ -415,6 +684,21 @@ namespace LoreSoft.Calculator
             this.undoToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.undoToolStripButton.Text = "&Undo";
             this.undoToolStripButton.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
+            // clearHistoryToolStripButton
+            // 
+            this.clearHistoryToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.clearHistoryToolStripButton.Image = global::LoreSoft.Calculator.Properties.Resources.Delete;
+            this.clearHistoryToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.clearHistoryToolStripButton.Name = "clearHistoryToolStripButton";
+            this.clearHistoryToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.clearHistoryToolStripButton.Text = "&Clear History";
+            this.clearHistoryToolStripButton.Click += new System.EventHandler(this.clearHistoryToolStripMenuItem_Click);
             // 
             // historyPanel
             // 
@@ -629,283 +913,59 @@ namespace LoreSoft.Calculator
             this.saveFileDialog.SupportMultiDottedExtensions = true;
             this.saveFileDialog.Title = "Save History";
             // 
-            // basicOperationsToolStripMenuItem
+            // lengthToolStripMenuItem
             // 
-            this.basicOperationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.subtractToolStripMenuItem,
-            this.multiplyToolStripMenuItem,
-            this.divideToolStripMenuItem,
-            this.modulusToolStripMenuItem,
-            this.powerToolStripMenuItem,
-            this.toolStripSeparator11,
-            this.sqrtToolStripMenuItem,
-            this.absToolStripMenuItem});
-            this.basicOperationsToolStripMenuItem.Name = "basicOperationsToolStripMenuItem";
-            this.basicOperationsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.basicOperationsToolStripMenuItem.Text = "Basic Operations";
+            this.lengthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lengthDummyToolStripMenuItem});
+            this.lengthToolStripMenuItem.Name = "lengthToolStripMenuItem";
+            this.lengthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lengthToolStripMenuItem.Text = "&Length";
+            this.lengthToolStripMenuItem.DropDownOpening += new System.EventHandler(this.lengthToolStripMenuItem_DropDownOpening);
             // 
-            // trigFunctionsToolStripMenuItem
+            // massToolStripMenuItem
             // 
-            this.trigFunctionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cosToolStripMenuItem,
-            this.coshToolStripMenuItem,
-            this.acosToolStripMenuItem,
-            this.sinToolStripMenuItem,
-            this.sinhToolStripMenuItem,
-            this.asinToolStripMenuItem,
-            this.tanToolStripMenuItem,
-            this.tanhToolStripMenuItem,
-            this.atanToolStripMenuItem});
-            this.trigFunctionsToolStripMenuItem.Name = "trigFunctionsToolStripMenuItem";
-            this.trigFunctionsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.trigFunctionsToolStripMenuItem.Text = "Trig Functions";
+            this.massToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.massDummyToolStripMenuItem});
+            this.massToolStripMenuItem.Name = "massToolStripMenuItem";
+            this.massToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.massToolStripMenuItem.Text = "&Mass";
+            this.massToolStripMenuItem.DropDownOpening += new System.EventHandler(this.massToolStripMenuItem_DropDownOpening);
             // 
-            // logFunctionsToolStripMenuItem
+            // lengthDummyToolStripMenuItem
             // 
-            this.logFunctionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.expToolStripMenuItem,
-            this.logToolStripMenuItem,
-            this.log10ToolStripMenuItem});
-            this.logFunctionsToolStripMenuItem.Name = "logFunctionsToolStripMenuItem";
-            this.logFunctionsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.logFunctionsToolStripMenuItem.Text = "Log Functions";
+            this.lengthDummyToolStripMenuItem.Name = "lengthDummyToolStripMenuItem";
+            this.lengthDummyToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.lengthDummyToolStripMenuItem.Text = "Length Dummy";
             // 
-            // addToolStripMenuItem
+            // massDummyToolStripMenuItem
             // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addToolStripMenuItem.Tag = "+";
-            this.addToolStripMenuItem.Text = "add";
-            this.addToolStripMenuItem.ToolTipText = "Adds two numbers.";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            this.massDummyToolStripMenuItem.Name = "massDummyToolStripMenuItem";
+            this.massDummyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.massDummyToolStripMenuItem.Text = "Mass Dummy";
             // 
-            // subtractToolStripMenuItem
+            // speedDummyToolStripMenuItem
             // 
-            this.subtractToolStripMenuItem.Name = "subtractToolStripMenuItem";
-            this.subtractToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.subtractToolStripMenuItem.Tag = "-";
-            this.subtractToolStripMenuItem.Text = "subtract";
-            this.subtractToolStripMenuItem.ToolTipText = "Subtracts two numbers ";
-            this.subtractToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            this.speedDummyToolStripMenuItem.Name = "speedDummyToolStripMenuItem";
+            this.speedDummyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.speedDummyToolStripMenuItem.Text = "Speed Dummy";
             // 
-            // multiplyToolStripMenuItem
+            // temperatureDummyToolStripMenuItem
             // 
-            this.multiplyToolStripMenuItem.Name = "multiplyToolStripMenuItem";
-            this.multiplyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.multiplyToolStripMenuItem.Tag = "*";
-            this.multiplyToolStripMenuItem.Text = "multiply";
-            this.multiplyToolStripMenuItem.ToolTipText = "Multiplies two numbers.";
-            this.multiplyToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            this.temperatureDummyToolStripMenuItem.Name = "temperatureDummyToolStripMenuItem";
+            this.temperatureDummyToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.temperatureDummyToolStripMenuItem.Text = "Temperature Dummy";
             // 
-            // divideToolStripMenuItem
+            // timeDummyToolStripMenuItem
             // 
-            this.divideToolStripMenuItem.Name = "divideToolStripMenuItem";
-            this.divideToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.divideToolStripMenuItem.Tag = "/";
-            this.divideToolStripMenuItem.Text = "divide";
-            this.divideToolStripMenuItem.ToolTipText = "Divides two numbers.";
-            this.divideToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
+            this.timeDummyToolStripMenuItem.Name = "timeDummyToolStripMenuItem";
+            this.timeDummyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.timeDummyToolStripMenuItem.Text = "Time Dummy";
             // 
-            // modulusToolStripMenuItem
+            // volumeDummyToolStripMenuItem
             // 
-            this.modulusToolStripMenuItem.Name = "modulusToolStripMenuItem";
-            this.modulusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.modulusToolStripMenuItem.Tag = "%";
-            this.modulusToolStripMenuItem.Text = "modulus";
-            this.modulusToolStripMenuItem.ToolTipText = "Divides two numbers and returns only the remainder.";
-            this.modulusToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // powerToolStripMenuItem
-            // 
-            this.powerToolStripMenuItem.Name = "powerToolStripMenuItem";
-            this.powerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.powerToolStripMenuItem.Tag = "^";
-            this.powerToolStripMenuItem.Text = "power";
-            this.powerToolStripMenuItem.ToolTipText = "Raises a number to the power of another number.";
-            this.powerToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // sqrtToolStripMenuItem
-            // 
-            this.sqrtToolStripMenuItem.Name = "sqrtToolStripMenuItem";
-            this.sqrtToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sqrtToolStripMenuItem.Tag = "sqrt(|)";
-            this.sqrtToolStripMenuItem.Text = "sqrt";
-            this.sqrtToolStripMenuItem.ToolTipText = "Returns the square root of a specified number.";
-            this.sqrtToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // absToolStripMenuItem
-            // 
-            this.absToolStripMenuItem.Name = "absToolStripMenuItem";
-            this.absToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.absToolStripMenuItem.Tag = "abs(|)";
-            this.absToolStripMenuItem.Text = "abs";
-            this.absToolStripMenuItem.ToolTipText = "Returns the absolute value of a specified number. ";
-            this.absToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // cosToolStripMenuItem
-            // 
-            this.cosToolStripMenuItem.Name = "cosToolStripMenuItem";
-            this.cosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cosToolStripMenuItem.Tag = "cos(|)";
-            this.cosToolStripMenuItem.Text = "cos";
-            this.cosToolStripMenuItem.ToolTipText = "Returns the cosine of the specified angle.";
-            this.cosToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // acosToolStripMenuItem
-            // 
-            this.acosToolStripMenuItem.Name = "acosToolStripMenuItem";
-            this.acosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.acosToolStripMenuItem.Tag = "acos(|)";
-            this.acosToolStripMenuItem.Text = "acos";
-            this.acosToolStripMenuItem.ToolTipText = "Returns the angle whose cosine is the specified number.";
-            this.acosToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // sinToolStripMenuItem
-            // 
-            this.sinToolStripMenuItem.Name = "sinToolStripMenuItem";
-            this.sinToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sinToolStripMenuItem.Tag = "sin(|)";
-            this.sinToolStripMenuItem.Text = "sin";
-            this.sinToolStripMenuItem.ToolTipText = "Returns the sine of the specified angle. ";
-            this.sinToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // asinToolStripMenuItem
-            // 
-            this.asinToolStripMenuItem.Name = "asinToolStripMenuItem";
-            this.asinToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.asinToolStripMenuItem.Tag = "asin(|)";
-            this.asinToolStripMenuItem.Text = "asin";
-            this.asinToolStripMenuItem.ToolTipText = "Returns the angle whose sine is the specified number.";
-            this.asinToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // tanToolStripMenuItem
-            // 
-            this.tanToolStripMenuItem.Name = "tanToolStripMenuItem";
-            this.tanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.tanToolStripMenuItem.Tag = "tan(|)";
-            this.tanToolStripMenuItem.Text = "tan";
-            this.tanToolStripMenuItem.ToolTipText = "Returns the tangent of the specified angle.";
-            this.tanToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // atanToolStripMenuItem
-            // 
-            this.atanToolStripMenuItem.Name = "atanToolStripMenuItem";
-            this.atanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.atanToolStripMenuItem.Tag = "atan(|)";
-            this.atanToolStripMenuItem.Text = "atan";
-            this.atanToolStripMenuItem.ToolTipText = "Returns the angle whose tangent is the specified number.";
-            this.atanToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // expToolStripMenuItem
-            // 
-            this.expToolStripMenuItem.Name = "expToolStripMenuItem";
-            this.expToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.expToolStripMenuItem.Tag = "exp(|)";
-            this.expToolStripMenuItem.Text = "exp";
-            this.expToolStripMenuItem.ToolTipText = "Returns e raised to the specified power.";
-            this.expToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // logToolStripMenuItem
-            // 
-            this.logToolStripMenuItem.Name = "logToolStripMenuItem";
-            this.logToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.logToolStripMenuItem.Tag = "log(|)";
-            this.logToolStripMenuItem.Text = "log";
-            this.logToolStripMenuItem.ToolTipText = "Returns the logarithm of a specified number.";
-            this.logToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // log10ToolStripMenuItem
-            // 
-            this.log10ToolStripMenuItem.Name = "log10ToolStripMenuItem";
-            this.log10ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.log10ToolStripMenuItem.Tag = "log10(|)";
-            this.log10ToolStripMenuItem.Text = "log10";
-            this.log10ToolStripMenuItem.ToolTipText = "Returns the base 10 logarithm of a specified number.";
-            this.log10ToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // coshToolStripMenuItem
-            // 
-            this.coshToolStripMenuItem.Name = "coshToolStripMenuItem";
-            this.coshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.coshToolStripMenuItem.Tag = "cosh(|)";
-            this.coshToolStripMenuItem.Text = "cosh";
-            this.coshToolStripMenuItem.ToolTipText = "Returns the hyperbolic cosine of the specified angle. ";
-            this.coshToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // sinhToolStripMenuItem
-            // 
-            this.sinhToolStripMenuItem.Name = "sinhToolStripMenuItem";
-            this.sinhToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sinhToolStripMenuItem.Tag = "sinh(|)";
-            this.sinhToolStripMenuItem.Text = "sinh";
-            this.sinhToolStripMenuItem.ToolTipText = "Returns the hyperbolic sine of the specified angle.";
-            this.sinhToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // tanhToolStripMenuItem
-            // 
-            this.tanhToolStripMenuItem.Name = "tanhToolStripMenuItem";
-            this.tanhToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.tanhToolStripMenuItem.Tag = "tanh(|)";
-            this.tanhToolStripMenuItem.Text = "tanh";
-            this.tanhToolStripMenuItem.ToolTipText = "Returns the hyperbolic tangent of the specified angle.";
-            this.tanhToolStripMenuItem.Click += new System.EventHandler(this.function_Click);
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(149, 6);
-            // 
-            // clearHistoryToolStripButton
-            // 
-            this.clearHistoryToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.clearHistoryToolStripButton.Image = global::LoreSoft.Calculator.Properties.Resources.Delete;
-            this.clearHistoryToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.clearHistoryToolStripButton.Name = "clearHistoryToolStripButton";
-            this.clearHistoryToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.clearHistoryToolStripButton.Text = "&Clear History";
-            this.clearHistoryToolStripButton.Click += new System.EventHandler(this.clearHistoryToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
-            // 
-            // distanceToolStripMenuItem
-            // 
-            this.distanceToolStripMenuItem.Name = "distanceToolStripMenuItem";
-            this.distanceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.distanceToolStripMenuItem.Text = "&Distance";
-            // 
-            // weightToolStripMenuItem
-            // 
-            this.weightToolStripMenuItem.Name = "weightToolStripMenuItem";
-            this.weightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.weightToolStripMenuItem.Text = "&Weight";
-            // 
-            // timeToolStripMenuItem
-            // 
-            this.timeToolStripMenuItem.Name = "timeToolStripMenuItem";
-            this.timeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.timeToolStripMenuItem.Text = "&Time";
-            // 
-            // volumeToolStripMenuItem
-            // 
-            this.volumeToolStripMenuItem.Name = "volumeToolStripMenuItem";
-            this.volumeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.volumeToolStripMenuItem.Text = "&Volume";
-            // 
-            // temperatureToolStripMenuItem
-            // 
-            this.temperatureToolStripMenuItem.Name = "temperatureToolStripMenuItem";
-            this.temperatureToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.temperatureToolStripMenuItem.Text = "Tem&perature";
-            // 
-            // speedToolStripMenuItem
-            // 
-            this.speedToolStripMenuItem.Name = "speedToolStripMenuItem";
-            this.speedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.speedToolStripMenuItem.Text = "&Speed";
+            this.volumeDummyToolStripMenuItem.Name = "volumeDummyToolStripMenuItem";
+            this.volumeDummyToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.volumeDummyToolStripMenuItem.Text = "Volume Dummy";
             // 
             // CalculatorForm
             // 
@@ -1021,11 +1081,17 @@ namespace LoreSoft.Calculator
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton clearHistoryToolStripButton;
-        private System.Windows.Forms.ToolStripMenuItem distanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem temperatureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem timeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem volumeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem weightToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem speedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lengthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem massToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lengthDummyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem massDummyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem speedDummyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem temperatureDummyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem timeDummyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem volumeDummyToolStripMenuItem;
     }
 }

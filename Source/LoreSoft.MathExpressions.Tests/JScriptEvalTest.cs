@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 
-namespace Calculator.Tests
+namespace  LoreSoft.Calculator.Tests
 {
     [TestFixture()]
     public class JScriptEvalTest

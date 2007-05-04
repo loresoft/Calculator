@@ -7,8 +7,11 @@
     <ProjectGuid>{AD511AF2-5BD5-4EF2-8D0A-FF133FD0A989}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Calculator.Tests</RootNamespace>
-    <AssemblyName>Calculator.Tests</AssemblyName>
+    <RootNamespace>LoreSoft.Calculator.Tests</RootNamespace>
+    <AssemblyName>LoreSoft.Calculator.Tests</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,9 +43,17 @@
     <Reference Include="nunit.framework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertExpressionTest.cs" />
     <Compile Include="JScriptEvalTest.cs" />
     <Compile Include="MathEvaluatorTest.cs" />
+    <Compile Include="Metadata\AttributeReaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitConversion\LengthConverterTest.cs" />
+    <Compile Include="UnitConversion\MassConverterTest.cs" />
+    <Compile Include="UnitConversion\SpeedConverterTest.cs" />
+    <Compile Include="UnitConversion\TemperatureConverterTest.cs" />
+    <Compile Include="UnitConversion\TimeConverterTest.cs" />
+    <Compile Include="UnitConversion\VolumeConverterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

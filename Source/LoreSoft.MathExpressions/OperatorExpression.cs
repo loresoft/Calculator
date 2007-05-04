@@ -1,5 +1,6 @@
 using System;
 using LoreSoft.MathExpressions.Properties;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LoreSoft.MathExpressions
 {
@@ -9,7 +10,7 @@ namespace LoreSoft.MathExpressions
     public class OperatorExpression : ExpressionBase
     {
         /// <summary>The supported math operators by this class.</summary>
-        public static readonly char[] OperatorSymbols = new char[] {'+', '-', '*', '/', '%', '^'};
+        private static readonly char[] operatorSymbols = new char[] {'+', '-', '*', '/', '%', '^'};
 
         /// <summary>Initializes a new instance of the <see cref="OperatorExpression"/> class.</summary>
         /// <param name="operator">The operator to use for this class.</param>
@@ -20,7 +21,6 @@ namespace LoreSoft.MathExpressions
             if (string.IsNullOrEmpty(@operator))
                 throw new ArgumentNullException("operator");
 
-            //TODO refactor into dictionary
             switch (@operator)
             {
                 case "+":
@@ -168,14 +168,16 @@ namespace LoreSoft.MathExpressions
         }
 
         /// <summary>Determines whether the specified string is a math symbol.</summary>
-        /// <param name="c">The string to check.</param>
+        /// <param name="s">The string to check.</param>
         /// <returns><c>true</c> if the specified string is a math symbol; otherwise, <c>false</c>.</returns>
-        public static bool IsSymbol(string c)
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods")]
+        public static bool IsSymbol(string s)
         {
-            if (c == null || c.Length != 1)
+            if (s == null || s.Length != 1)
                 return false;
-
-            return IsSymbol(c[0]);
+            
+            char c = s[0];
+            return IsSymbol(c);
         }
 
         /// <summary>Determines whether the specified char is a math symbol.</summary>
@@ -183,7 +185,7 @@ namespace LoreSoft.MathExpressions
         /// <returns><c>true</c> if the specified char is a math symbol; otherwise, <c>false</c>.</returns>
         public static bool IsSymbol(char c)
         {
-            return Array.Exists(OperatorSymbols, delegate(char s) { return s == c; });
+            return Array.Exists(operatorSymbols, delegate(char s) { return s == c; });
         }
 
         /// <summary>

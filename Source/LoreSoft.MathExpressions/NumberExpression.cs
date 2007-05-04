@@ -12,7 +12,7 @@ namespace LoreSoft.MathExpressions
         public NumberExpression(double value)
         {
             _value = value;
-            Evaluate = delegate(double[] numbers)
+            base.Evaluate = delegate
             {
                 return Value;
             };
@@ -62,7 +62,7 @@ namespace LoreSoft.MathExpressions
         /// <filterPriority>2</filterPriority>
         public override string ToString()
         {
-            return _value.ToString();
+            return _value.ToString(CultureInfo.CurrentCulture);
         }
     }
 }

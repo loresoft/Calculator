@@ -4,7 +4,7 @@ using System.Text;
 using NUnit.Framework;
 using LoreSoft.MathExpressions;
 
-namespace Calculator.Tests
+namespace  LoreSoft.Calculator.Tests
 {
     [TestFixture()]
     public class MathEvaluatorTest
@@ -121,14 +121,28 @@ namespace Calculator.Tests
             double expected = 0;
             double result = 0;
 
-            for (int i = 1; i < 1000000; i++)
+            for (int i = 1; i < 100000; i++)
             {
                 eval.Variables["i"] = i;
-                //expected += Math.Pow(i, 2) + 5 * i + 14;
+                expected += Math.Pow(i, 2) + 5 * i + 14;
                 result += eval.Evaluate("i^2+5*i+14");
             }
 
-            //Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void EvaluateConvert()
+        {
+            double expected = 12;
+            double result = eval.Evaluate("1 [ft->in]");
+
+            Assert.AreEqual(expected, result);
+
+            expected = 12;
+            result = eval.Evaluate("1 [ft -> in]");
+
+            Assert.AreEqual(expected, result);
         }
     }
 }

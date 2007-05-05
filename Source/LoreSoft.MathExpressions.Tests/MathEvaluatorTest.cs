@@ -4,7 +4,7 @@ using System.Text;
 using NUnit.Framework;
 using LoreSoft.MathExpressions;
 
-namespace  LoreSoft.Calculator.Tests
+namespace LoreSoft.MathExpressions.Tests
 {
     [TestFixture()]
     public class MathEvaluatorTest

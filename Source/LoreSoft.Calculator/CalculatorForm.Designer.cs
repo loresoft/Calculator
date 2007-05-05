@@ -76,10 +76,18 @@ namespace LoreSoft.Calculator
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.log10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conversionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lengthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lengthDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.massToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.massDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.speedDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.temperatureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.temperatureDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.volumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.volumeDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
@@ -115,14 +123,6 @@ namespace LoreSoft.Calculator
             this.numLockToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.lengthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.massToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lengthDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.massDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.speedDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.temperatureDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timeDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.volumeDummyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
             this.historyPanel.SuspendLayout();
@@ -555,41 +555,95 @@ namespace LoreSoft.Calculator
             this.conversionsToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
             this.conversionsToolStripMenuItem.Text = "&Conversions";
             // 
+            // lengthToolStripMenuItem
+            // 
+            this.lengthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lengthDummyToolStripMenuItem});
+            this.lengthToolStripMenuItem.Name = "lengthToolStripMenuItem";
+            this.lengthToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.lengthToolStripMenuItem.Text = "&Length";
+            this.lengthToolStripMenuItem.DropDownOpening += new System.EventHandler(this.lengthToolStripMenuItem_DropDownOpening);
+            // 
+            // lengthDummyToolStripMenuItem
+            // 
+            this.lengthDummyToolStripMenuItem.Name = "lengthDummyToolStripMenuItem";
+            this.lengthDummyToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.lengthDummyToolStripMenuItem.Text = "Length Dummy";
+            // 
+            // massToolStripMenuItem
+            // 
+            this.massToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.massDummyToolStripMenuItem});
+            this.massToolStripMenuItem.Name = "massToolStripMenuItem";
+            this.massToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.massToolStripMenuItem.Text = "&Mass";
+            this.massToolStripMenuItem.DropDownOpening += new System.EventHandler(this.massToolStripMenuItem_DropDownOpening);
+            // 
+            // massDummyToolStripMenuItem
+            // 
+            this.massDummyToolStripMenuItem.Name = "massDummyToolStripMenuItem";
+            this.massDummyToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.massDummyToolStripMenuItem.Text = "Mass Dummy";
+            // 
             // speedToolStripMenuItem
             // 
             this.speedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.speedDummyToolStripMenuItem});
             this.speedToolStripMenuItem.Name = "speedToolStripMenuItem";
-            this.speedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.speedToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.speedToolStripMenuItem.Text = "&Speed";
             this.speedToolStripMenuItem.DropDownOpening += new System.EventHandler(this.speedToolStripMenuItem_DropDownOpening);
+            // 
+            // speedDummyToolStripMenuItem
+            // 
+            this.speedDummyToolStripMenuItem.Name = "speedDummyToolStripMenuItem";
+            this.speedDummyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.speedDummyToolStripMenuItem.Text = "Speed Dummy";
             // 
             // temperatureToolStripMenuItem
             // 
             this.temperatureToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.temperatureDummyToolStripMenuItem});
             this.temperatureToolStripMenuItem.Name = "temperatureToolStripMenuItem";
-            this.temperatureToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.temperatureToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.temperatureToolStripMenuItem.Text = "Tem&perature";
             this.temperatureToolStripMenuItem.DropDownOpening += new System.EventHandler(this.temperatureToolStripMenuItem_DropDownOpening);
+            // 
+            // temperatureDummyToolStripMenuItem
+            // 
+            this.temperatureDummyToolStripMenuItem.Name = "temperatureDummyToolStripMenuItem";
+            this.temperatureDummyToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.temperatureDummyToolStripMenuItem.Text = "Temperature Dummy";
             // 
             // timeToolStripMenuItem
             // 
             this.timeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.timeDummyToolStripMenuItem});
             this.timeToolStripMenuItem.Name = "timeToolStripMenuItem";
-            this.timeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.timeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.timeToolStripMenuItem.Text = "&Time";
             this.timeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.timeToolStripMenuItem_DropDownOpening);
+            // 
+            // timeDummyToolStripMenuItem
+            // 
+            this.timeDummyToolStripMenuItem.Name = "timeDummyToolStripMenuItem";
+            this.timeDummyToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.timeDummyToolStripMenuItem.Text = "Time Dummy";
             // 
             // volumeToolStripMenuItem
             // 
             this.volumeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.volumeDummyToolStripMenuItem});
             this.volumeToolStripMenuItem.Name = "volumeToolStripMenuItem";
-            this.volumeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.volumeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.volumeToolStripMenuItem.Text = "&Volume";
             this.volumeToolStripMenuItem.DropDownOpening += new System.EventHandler(this.volumeToolStripMenuItem_DropDownOpening);
+            // 
+            // volumeDummyToolStripMenuItem
+            // 
+            this.volumeDummyToolStripMenuItem.Name = "volumeDummyToolStripMenuItem";
+            this.volumeDummyToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.volumeDummyToolStripMenuItem.Text = "Volume Dummy";
             // 
             // helpToolStripMenuItem
             // 
@@ -707,7 +761,7 @@ namespace LoreSoft.Calculator
             this.historyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.historyPanel.Location = new System.Drawing.Point(0, 49);
             this.historyPanel.Name = "historyPanel";
-            this.historyPanel.Size = new System.Drawing.Size(384, 204);
+            this.historyPanel.Size = new System.Drawing.Size(384, 200);
             this.historyPanel.TabIndex = 5;
             // 
             // historyRichTextBox
@@ -716,12 +770,12 @@ namespace LoreSoft.Calculator
             this.historyRichTextBox.ContextMenuStrip = this.historyContextMenuStrip;
             this.historyRichTextBox.DetectUrls = false;
             this.historyRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.historyRichTextBox.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.historyRichTextBox.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.historyRichTextBox.Location = new System.Drawing.Point(0, 23);
             this.historyRichTextBox.Margin = new System.Windows.Forms.Padding(5);
             this.historyRichTextBox.Name = "historyRichTextBox";
             this.historyRichTextBox.ReadOnly = true;
-            this.historyRichTextBox.Size = new System.Drawing.Size(384, 181);
+            this.historyRichTextBox.Size = new System.Drawing.Size(384, 177);
             this.historyRichTextBox.TabIndex = 1;
             this.historyRichTextBox.Text = "";
             // 
@@ -778,7 +832,7 @@ namespace LoreSoft.Calculator
             this.inputLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.inputLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputLabel.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.inputLabel.Location = new System.Drawing.Point(0, 253);
+            this.inputLabel.Location = new System.Drawing.Point(0, 249);
             this.inputLabel.Name = "inputLabel";
             this.inputLabel.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.inputLabel.Size = new System.Drawing.Size(384, 23);
@@ -790,10 +844,10 @@ namespace LoreSoft.Calculator
             // 
             this.inputTextBox.ContextMenuStrip = this.inputContextMenuStrip;
             this.inputTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.inputTextBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputTextBox.Location = new System.Drawing.Point(0, 276);
+            this.inputTextBox.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputTextBox.Location = new System.Drawing.Point(0, 272);
             this.inputTextBox.Name = "inputTextBox";
-            this.inputTextBox.Size = new System.Drawing.Size(384, 26);
+            this.inputTextBox.Size = new System.Drawing.Size(384, 30);
             this.inputTextBox.TabIndex = 3;
             this.inputTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputTextBox_KeyDown);
             this.inputTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inputTextBox_KeyPress);
@@ -913,60 +967,6 @@ namespace LoreSoft.Calculator
             this.saveFileDialog.SupportMultiDottedExtensions = true;
             this.saveFileDialog.Title = "Save History";
             // 
-            // lengthToolStripMenuItem
-            // 
-            this.lengthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lengthDummyToolStripMenuItem});
-            this.lengthToolStripMenuItem.Name = "lengthToolStripMenuItem";
-            this.lengthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.lengthToolStripMenuItem.Text = "&Length";
-            this.lengthToolStripMenuItem.DropDownOpening += new System.EventHandler(this.lengthToolStripMenuItem_DropDownOpening);
-            // 
-            // massToolStripMenuItem
-            // 
-            this.massToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.massDummyToolStripMenuItem});
-            this.massToolStripMenuItem.Name = "massToolStripMenuItem";
-            this.massToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.massToolStripMenuItem.Text = "&Mass";
-            this.massToolStripMenuItem.DropDownOpening += new System.EventHandler(this.massToolStripMenuItem_DropDownOpening);
-            // 
-            // lengthDummyToolStripMenuItem
-            // 
-            this.lengthDummyToolStripMenuItem.Name = "lengthDummyToolStripMenuItem";
-            this.lengthDummyToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.lengthDummyToolStripMenuItem.Text = "Length Dummy";
-            // 
-            // massDummyToolStripMenuItem
-            // 
-            this.massDummyToolStripMenuItem.Name = "massDummyToolStripMenuItem";
-            this.massDummyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.massDummyToolStripMenuItem.Text = "Mass Dummy";
-            // 
-            // speedDummyToolStripMenuItem
-            // 
-            this.speedDummyToolStripMenuItem.Name = "speedDummyToolStripMenuItem";
-            this.speedDummyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.speedDummyToolStripMenuItem.Text = "Speed Dummy";
-            // 
-            // temperatureDummyToolStripMenuItem
-            // 
-            this.temperatureDummyToolStripMenuItem.Name = "temperatureDummyToolStripMenuItem";
-            this.temperatureDummyToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.temperatureDummyToolStripMenuItem.Text = "Temperature Dummy";
-            // 
-            // timeDummyToolStripMenuItem
-            // 
-            this.timeDummyToolStripMenuItem.Name = "timeDummyToolStripMenuItem";
-            this.timeDummyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.timeDummyToolStripMenuItem.Text = "Time Dummy";
-            // 
-            // volumeDummyToolStripMenuItem
-            // 
-            this.volumeDummyToolStripMenuItem.Name = "volumeDummyToolStripMenuItem";
-            this.volumeDummyToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.volumeDummyToolStripMenuItem.Text = "Volume Dummy";
-            // 
             // CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -981,7 +981,7 @@ namespace LoreSoft.Calculator
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(400, 360);
             this.Name = "CalculatorForm";
-            this.Text = "Calculator";
+            this.Text = "Calculator.NET";
             this.Load += new System.EventHandler(this.CalculatorForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CalculatorForm_FormClosing);
             this.mainMenuStrip.ResumeLayout(false);

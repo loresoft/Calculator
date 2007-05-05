@@ -5,7 +5,7 @@ using NUnit.Framework;
 using LoreSoft.MathExpressions.Metadata;
 using LoreSoft.MathExpressions.UnitConversion;
 
-namespace LoreSoft.Calculator.Tests.Metadata
+namespace LoreSoft.MathExpressions.Tests.Metadata
 {
     [TestFixture()]
     public class AttributeReaderTest

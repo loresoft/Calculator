@@ -27,135 +27,143 @@ namespace LoreSoft.Calculator
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
-            this.labelProductName = new System.Windows.Forms.Label();
-            this.labelVersion = new System.Windows.Forms.Label();
-            this.labelCopyright = new System.Windows.Forms.Label();
-            this.labelCompanyName = new System.Windows.Forms.Label();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.assembliesListView = new System.Windows.Forms.ListView();
+            this.assemblyColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.versionColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.dateColumnHeader = new System.Windows.Forms.ColumnHeader();
+            this.copyrightLabel = new System.Windows.Forms.Label();
+            this.descriptionLabel = new System.Windows.Forms.Label();
+            this.versionLabel = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.loresoftLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.iconPictureBox = new System.Windows.Forms.PictureBox();
+            this.versionGroupBox = new System.Windows.Forms.GroupBox();
             this.okButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox)).BeginInit();
+            this.versionGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel
+            // assembliesListView
             // 
-            this.tableLayoutPanel.ColumnCount = 2;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67F));
-            this.tableLayoutPanel.Controls.Add(this.logoPictureBox, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.labelProductName, 1, 0);
-            this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 2);
-            this.tableLayoutPanel.Controls.Add(this.labelCompanyName, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 4);
-            this.tableLayoutPanel.Controls.Add(this.okButton, 1, 5);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(9, 9);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 6;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(417, 265);
-            this.tableLayoutPanel.TabIndex = 0;
+            this.assembliesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.assemblyColumnHeader,
+            this.versionColumnHeader,
+            this.dateColumnHeader});
+            this.assembliesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.assembliesListView.Location = new System.Drawing.Point(8, 16);
+            this.assembliesListView.Name = "assembliesListView";
+            this.assembliesListView.Size = new System.Drawing.Size(384, 120);
+            this.assembliesListView.TabIndex = 9;
+            this.assembliesListView.UseCompatibleStateImageBehavior = false;
+            this.assembliesListView.View = System.Windows.Forms.View.Details;
             // 
-            // logoPictureBox
+            // assemblyColumnHeader
             // 
-            this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
-            this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.logoPictureBox.Name = "logoPictureBox";
-            this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
-            this.logoPictureBox.Size = new System.Drawing.Size(131, 259);
-            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.logoPictureBox.TabIndex = 12;
-            this.logoPictureBox.TabStop = false;
+            this.assemblyColumnHeader.Text = "Module";
+            this.assemblyColumnHeader.Width = 160;
             // 
-            // labelProductName
+            // versionColumnHeader
             // 
-            this.labelProductName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelProductName.Location = new System.Drawing.Point(143, 0);
-            this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
-            this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(271, 17);
-            this.labelProductName.TabIndex = 19;
-            this.labelProductName.Text = "Product Name";
-            this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.versionColumnHeader.Text = "Version";
+            this.versionColumnHeader.Width = 105;
             // 
-            // labelVersion
+            // dateColumnHeader
             // 
-            this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelVersion.Location = new System.Drawing.Point(143, 26);
-            this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
-            this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(271, 17);
-            this.labelVersion.TabIndex = 0;
-            this.labelVersion.Text = "Version";
-            this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dateColumnHeader.Text = "Date";
+            this.dateColumnHeader.Width = 95;
             // 
-            // labelCopyright
+            // copyrightLabel
             // 
-            this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCopyright.Location = new System.Drawing.Point(143, 52);
-            this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
-            this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(271, 17);
-            this.labelCopyright.TabIndex = 21;
-            this.labelCopyright.Text = "Copyright";
-            this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.copyrightLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.copyrightLabel.Location = new System.Drawing.Point(121, 57);
+            this.copyrightLabel.Name = "copyrightLabel";
+            this.copyrightLabel.Size = new System.Drawing.Size(273, 23);
+            this.copyrightLabel.TabIndex = 22;
+            this.copyrightLabel.Text = "Application Copyright";
             // 
-            // labelCompanyName
+            // descriptionLabel
             // 
-            this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCompanyName.Location = new System.Drawing.Point(143, 78);
-            this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelCompanyName.MaximumSize = new System.Drawing.Size(0, 17);
-            this.labelCompanyName.Name = "labelCompanyName";
-            this.labelCompanyName.Size = new System.Drawing.Size(271, 17);
-            this.labelCompanyName.TabIndex = 22;
-            this.labelCompanyName.Text = "Company Name";
-            this.labelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.descriptionLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.descriptionLabel.Location = new System.Drawing.Point(121, 81);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(273, 32);
+            this.descriptionLabel.TabIndex = 21;
+            this.descriptionLabel.Text = "Application Description";
             // 
-            // textBoxDescription
+            // versionLabel
             // 
-            this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxDescription.Location = new System.Drawing.Point(143, 107);
-            this.textBoxDescription.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
-            this.textBoxDescription.Multiline = true;
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.ReadOnly = true;
-            this.textBoxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxDescription.Size = new System.Drawing.Size(271, 126);
-            this.textBoxDescription.TabIndex = 23;
-            this.textBoxDescription.TabStop = false;
-            this.textBoxDescription.Text = "Description";
+            this.versionLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.versionLabel.Location = new System.Drawing.Point(121, 33);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(273, 23);
+            this.versionLabel.TabIndex = 20;
+            this.versionLabel.Text = "Application Version";
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.titleLabel.Location = new System.Drawing.Point(121, 9);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(273, 24);
+            this.titleLabel.TabIndex = 19;
+            this.titleLabel.Text = "Application Title";
+            // 
+            // loresoftLinkLabel
+            // 
+            this.loresoftLinkLabel.Location = new System.Drawing.Point(121, 113);
+            this.loresoftLinkLabel.Name = "loresoftLinkLabel";
+            this.loresoftLinkLabel.Size = new System.Drawing.Size(273, 23);
+            this.loresoftLinkLabel.TabIndex = 23;
+            this.loresoftLinkLabel.TabStop = true;
+            this.loresoftLinkLabel.Text = "http://www.loresoft.com";
+            this.loresoftLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.loresoftLinkLabel_LinkClicked);
+            // 
+            // iconPictureBox
+            // 
+            this.iconPictureBox.Image = global::LoreSoft.Calculator.Properties.Resources.Calculator96;
+            this.iconPictureBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.iconPictureBox.Location = new System.Drawing.Point(10, 9);
+            this.iconPictureBox.Name = "iconPictureBox";
+            this.iconPictureBox.Size = new System.Drawing.Size(96, 96);
+            this.iconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.iconPictureBox.TabIndex = 18;
+            this.iconPictureBox.TabStop = false;
+            // 
+            // versionGroupBox
+            // 
+            this.versionGroupBox.Controls.Add(this.assembliesListView);
+            this.versionGroupBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.versionGroupBox.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.versionGroupBox.Location = new System.Drawing.Point(2, 137);
+            this.versionGroupBox.Name = "versionGroupBox";
+            this.versionGroupBox.Size = new System.Drawing.Size(400, 144);
+            this.versionGroupBox.TabIndex = 17;
+            this.versionGroupBox.TabStop = false;
+            this.versionGroupBox.Text = "Version Information";
             // 
             // okButton
             // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Location = new System.Drawing.Point(339, 239);
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.okButton.Location = new System.Drawing.Point(322, 289);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 24;
+            this.okButton.TabIndex = 16;
             this.okButton.Text = "&OK";
             // 
             // AboutForm
             // 
-            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(435, 283);
-            this.Controls.Add(this.tableLayoutPanel);
+            this.ClientSize = new System.Drawing.Size(409, 319);
+            this.Controls.Add(this.copyrightLabel);
+            this.Controls.Add(this.descriptionLabel);
+            this.Controls.Add(this.versionLabel);
+            this.Controls.Add(this.titleLabel);
+            this.Controls.Add(this.loresoftLinkLabel);
+            this.Controls.Add(this.iconPictureBox);
+            this.Controls.Add(this.versionGroupBox);
+            this.Controls.Add(this.okButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -164,23 +172,28 @@ namespace LoreSoft.Calculator
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "About Calculator";
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
+            this.Text = "About Calculator.NET";
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox)).EndInit();
+            this.versionGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private System.Windows.Forms.PictureBox logoPictureBox;
-        private System.Windows.Forms.Label labelProductName;
-        private System.Windows.Forms.Label labelVersion;
-        private System.Windows.Forms.Label labelCopyright;
-        private System.Windows.Forms.Label labelCompanyName;
-        private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.ListView assembliesListView;
+        private System.Windows.Forms.ColumnHeader assemblyColumnHeader;
+        private System.Windows.Forms.ColumnHeader versionColumnHeader;
+        private System.Windows.Forms.ColumnHeader dateColumnHeader;
+        internal System.Windows.Forms.Label copyrightLabel;
+        internal System.Windows.Forms.Label descriptionLabel;
+        internal System.Windows.Forms.Label versionLabel;
+        internal System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.LinkLabel loresoftLinkLabel;
+        internal System.Windows.Forms.PictureBox iconPictureBox;
+        private System.Windows.Forms.GroupBox versionGroupBox;
         private System.Windows.Forms.Button okButton;
+
     }
 }

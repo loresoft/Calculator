@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Calculator.Tests")]
+[assembly: AssemblyTitle("LoreSoft.MathExpressions.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("LoreSoft")]
-[assembly: AssemblyProduct("Calculator.Tests")]
+[assembly: AssemblyProduct("LoreSoft.MathExpressions.Tests")]
 [assembly: AssemblyCopyright("Copyright © LoreSoft 2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

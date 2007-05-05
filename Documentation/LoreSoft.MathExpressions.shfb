@@ -28,7 +28,7 @@
     <RootNamespaceContainer>False</RootNamespaceContainer>
     <RootNamespaceTitle />
     <HelpTitle>LoreSoft Math Expression Parser</HelpTitle>
-    <HtmlHelpName>LoreSoft.MathExpressions</HtmlHelpName>
+    <HtmlHelpName>MathExpressions</HtmlHelpName>
     <Language>en-US</Language>
     <CopyrightHref />
     <CopyrightText>Copyright © LoreSoft 2007</CopyrightText>

@@ -7,8 +7,8 @@
     <ProjectGuid>{AD511AF2-5BD5-4EF2-8D0A-FF133FD0A989}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LoreSoft.Calculator.Tests</RootNamespace>
-    <AssemblyName>LoreSoft.Calculator.Tests</AssemblyName>
+    <RootNamespace>LoreSoft.MathExpressions.Tests</RootNamespace>
+    <AssemblyName>LoreSoft.MathExpressions.Tests</AssemblyName>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
@@ -31,12 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JScript.Evalulator, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Libraries\JScript.Evalulator.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.JScript" />
-    <Reference Include="Microsoft.Vsa" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -44,7 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConvertExpressionTest.cs" />
-    <Compile Include="JScriptEvalTest.cs" />
     <Compile Include="MathEvaluatorTest.cs" />
     <Compile Include="Metadata\AttributeReaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

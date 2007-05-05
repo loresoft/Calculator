@@ -4,7 +4,7 @@ using System.Text;
 using LoreSoft.MathExpressions;
 using NUnit.Framework;
 
-namespace  LoreSoft.Calculator.Tests
+namespace  LoreSoft.MathExpressions.Tests
 {
     [TestFixture()]
     public class ConvertExpressionTest

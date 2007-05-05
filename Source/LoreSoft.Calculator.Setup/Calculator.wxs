@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" 
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  
+  <Product Id="21058970-e7f3-482b-8c6d-e17403da4b05"
+           UpgradeCode="a7a77c97-befa-4f82-96e9-c73f11c5b4cd"
+           Name="Calculator.NET"
+           Manufacturer="LoreSoft"
+           Language="1033"
+           Version="1.0.0.0">
+
+    <Package InstallerVersion="200" Compressed="yes" />
+
+    <Media Id="1" Cabinet="Calculator.cab" EmbedCab="yes" />
+
+    <Icon Id="CalcIcon" SourceFile="..\LoreSoft.Calculator\Calculator.ico" />
+
+    <Property Id="ALLUSERS" Value="1" />
+    <Property Id="ARPPRODUCTICON" Value="CalcIcon" />
+    <Property Id="ARPHELPLINK" Value="http://www.loresoft.com/" />
+    <Property Id="ARPURLINFOABOUT" Value="http://www.loresoft.com/" />
+    <Property Id="ARPURLUPDATEINFO" Value="http://www.loresoft.com/" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="LORESOFT" Name="LoreSoft">
+          <Directory Id="INSTALLDIR" Name="Calculator.NET" />
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder" />
+      <Directory Id="GlobalAssemblyCache" />
+    </Directory>
+
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Id="Calculator.exe" Guid="127F23BD-81D6-49ef-B3F2-859EF7EA801F">
+        <File Id="Calculator.exe"
+              Name="Calculator.exe"
+              Vital="yes"
+              KeyPath="yes"
+              Source="..\..\Build\Package\Calculator.exe">
+          <Shortcut Id="CalculatorShortcut"
+                    Directory="ProgramMenuFolder"
+                    Name="Calculator.NET"
+                    Advertise="yes" 
+                    DisplayResourceDll="[INSTALLDIR]Calculator.exe"
+                    DisplayResourceId="1" 
+                    Description="Calculator.NET" />
+          <netfx:NativeImage Id="CalculatorNativeImage" 
+                             Platform="all" 
+                             Priority="1" 
+                             Dependencies="yes" />
+        </File>
+      </Component>
+      <Component Id="Calculator.exe.config" Guid="E217E35A-50CB-47ac-9F5A-C2984AF38FC4">
+        <File Id="Calculator.exe.config"
+                Name="Calculator.exe.config"
+                Source="..\..\Build\Package\Calculator.exe.config" />
+      </Component>
+      <Component Id="LoreSoft.MathExpressions.dll" Guid="B801C069-2C56-404b-A2A3-B91A297EB49E">
+        <File Id="LoreSoft.MathExpressions.dll"
+                Name="LoreSoft.MathExpressions.dll"
+                Vital="yes"
+                Source="..\..\Build\Package\LoreSoft.MathExpressions.dll">
+          <netfx:NativeImage Id="MathExpressionsNativeImage"
+                   Platform="all"
+                   Priority="1"
+                   Dependencies="yes" />
+        </File>
+      </Component>
+      <Component Id="LoreSoft.MathExpressions.XML" Guid="FB7EE3C8-15B6-4749-8EEB-6B11F4257668">
+        <File Id="LoreSoft.MathExpressions.XML"
+              Name="LoreSoft.MathExpressions.XML"
+              Source="..\..\Build\Package\LoreSoft.MathExpressions.XML"/>
+      </Component>
+      <Component Id="MathExpressions.chm" Guid="97DE7E35-C499-4A01-90A6-DE8953B0F6D5">
+        <File Id="MathExpressions.chm"
+              Name="MathExpressions.chm"
+              Source="..\..\Build\Package\MathExpressions.chm" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="INSTALLDIR">
+      <Component Id="ReplaceWindowsCalculator" Guid="6DCD00CB-8D72-4366-811F-C8B7F3929C29">
+        <RegistryKey Root="HKLM"
+                     Key="SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\calc.exe"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Debugger"
+                         Value="[INSTALLDIR]Calculator.exe"
+                         Type="string"
+                         KeyPath="yes"/>
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+    <!-- Global Assembly Cache -->
+    <DirectoryRef Id="GlobalAssemblyCache">
+      <Component Id="Calculator.exe.gac" Guid="33D4735C-73F5-495F-8780-A43898C18EE7">
+        <File Id="Calculator.exe.gac"
+              Name="Calculator.exe"
+              Assembly=".net"
+              KeyPath="yes"
+              Vital="yes"
+              Source="..\..\Build\Package\Calculator.exe" />
+      </Component>
+      <Component Id="LoreSoft.MathExpressions.dll.gac" Guid="088FE10E-0C21-427c-B1F9-7D056BBBE979">
+        <File Id="LoreSoft.MathExpressions.dll.gac"
+                Name="LoreSoft.MathExpressions.dll"
+                Assembly=".net"
+                KeyPath="yes"
+                Vital="yes"
+                Source="..\..\Build\Package\LoreSoft.MathExpressions.dll" />
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="BinFeature" Level="1"
+             Display="expand"
+             AllowAdvertise="no"
+             Absent="disallow"
+             Title="Calculator.NET"
+             ConfigurableDirectory="INSTALLDIR"
+             Description="Install Calculator.NET and its components." >
+      
+      <ComponentRef Id="Calculator.exe" />
+      <ComponentRef Id="Calculator.exe.gac" />
+      <ComponentRef Id="Calculator.exe.config" />
+      <ComponentRef Id="LoreSoft.MathExpressions.dll" />
+      <ComponentRef Id="LoreSoft.MathExpressions.dll.gac" />
+      <ComponentRef Id="LoreSoft.MathExpressions.XML" />
+
+      <Feature Id="HelpFeature" Level="1"
+               Display="expand"
+               Title="Help"
+               Description="Install the help file of the math expression API.">
+        <ComponentRef Id="MathExpressions.chm" />
+      </Feature>
+
+      <Feature Id="ReplaceWindowsCalculator" Level="1"
+               Display="expand"
+               Title="Default Calculator"
+               Description="Override the Windows Calculator by making Calculator.NET the default Calculator.">
+        <ComponentRef Id="ReplaceWindowsCalculator" />
+      </Feature>
+      
+    </Feature>
+
+    <UI>
+      <UIRef Id="WixUI_FeatureTree"/>
+    </UI>
+  </Product>
+</Wix>

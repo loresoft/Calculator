@@ -4,7 +4,7 @@ using System.Text;
 using LoreSoft.MathExpressions.UnitConversion;
 using NUnit.Framework;
 
-namespace  LoreSoft.Calculator.Tests.UnitConversion
+namespace  LoreSoft.MathExpressions.Tests.UnitConversion
 {
     [TestFixture()]
     public class SpeedConverterTest

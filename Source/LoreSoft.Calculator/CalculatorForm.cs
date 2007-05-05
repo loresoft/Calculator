@@ -5,12 +5,12 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Reflection;
 using LoreSoft.Calculator.Properties;
 using LoreSoft.MathExpressions;
 using LoreSoft.MathExpressions.UnitConversion;
 using LoreSoft.MathExpressions.Metadata;
-using System.Globalization;
-using System.Reflection;
 
 namespace LoreSoft.Calculator
 {

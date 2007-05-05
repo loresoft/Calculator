@@ -49,6 +49,19 @@
     <PackageFiles Include="Documentation\Help\*.chm" />
   </ItemGroup>
 
+  <Target Name="Clean">
+    <RemoveDir Directories="Source\LoreSoft.Calculator\obj\" ContinueOnError="true" />
+    <RemoveDir Directories="Source\LoreSoft.Calculator\bin\" ContinueOnError="true"/>
+    <RemoveDir Directories="Source\LoreSoft.Calculator.Setup\obj\" ContinueOnError="true" />
+    <RemoveDir Directories="Source\LoreSoft.Calculator.Setup\bin\" ContinueOnError="true"/>
+    <RemoveDir Directories="Source\LoreSoft.MathExpressions\obj\" ContinueOnError="true" />
+    <RemoveDir Directories="Source\LoreSoft.MathExpressions\bin\" ContinueOnError="true"/>
+    <RemoveDir Directories="Source\LoreSoft.MathExpressions.Tests\obj\" ContinueOnError="true" />
+    <RemoveDir Directories="Source\LoreSoft.MathExpressions.Tests\bin\" ContinueOnError="true"/>
+    <RemoveDir Directories="$(PackageFolder)" ContinueOnError="true" />
+    <RemoveDir Directories="$(BuildFolder)" ContinueOnError="true" />
+  </Target>
+
   <Target Name="Version">
     <Time>
       <Output TaskParameter="Year" PropertyName="Year" />
@@ -96,16 +109,6 @@
 
   </Target>
 
-  <Target Name="Clean">
-    <RemoveDir Directories="Source\LoreSoft.Calculator\obj\" ContinueOnError="true" />
-    <RemoveDir Directories="Source\LoreSoft.Calculator\bin\" ContinueOnError="true"/>
-    <RemoveDir Directories="Source\LoreSoft.MathExpressions\obj\" ContinueOnError="true" />
-    <RemoveDir Directories="Source\LoreSoft.MathExpressions\bin\" ContinueOnError="true"/>
-    <RemoveDir Directories="Source\LoreSoft.MathExpressions.Tests\obj\" ContinueOnError="true" />
-    <RemoveDir Directories="Source\LoreSoft.MathExpressions.Tests\bin\" ContinueOnError="true"/>
-    <RemoveDir Directories="$(PackageFolder)" ContinueOnError="true" />
-    <RemoveDir Directories="$(BuildFolder)" ContinueOnError="true" />
-  </Target>
 
   <Target Name="Compile" DependsOnTargets="Clean;AssemblyInfo">
     <MSBuild Projects="Source\Calculator.sln"
@@ -129,7 +132,8 @@
   <Target Name="Setup" DependsOnTargets="Package">
     <MSBuild Projects="Source\LoreSoft.Calculator.Setup\Setup.sln"
              Properties="Configuration=$(BuildConfiguration)"/>
-    <Copy SourceFiles="Source\LoreSoft.Calculator.Setup\bin\Debug\Calculator.msi"
+
+    <Copy SourceFiles="Source\LoreSoft.Calculator.Setup\bin\$(BuildConfiguration)\Calculator.msi"
           DestinationFiles="Calculator.msi" />
   </Target>
 

@@ -283,7 +283,7 @@ namespace LoreSoft.Calculator
             inputTextBox.ResumeLayout();
         }
 
-        private void AddToMenuItem<T>(ToolStripMenuItem p)
+        private void AddToConvertMenuItem<T>(ToolStripMenuItem p)
             where T : struct, IComparable, IFormattable, IConvertible
         {
             Type enumType = typeof(T);
@@ -337,7 +337,7 @@ namespace LoreSoft.Calculator
             if (lengthToolStripMenuItem.DropDownItems.Count > 1)
                 return;
 
-            AddToMenuItem<LengthUnit>(lengthToolStripMenuItem);
+            AddToConvertMenuItem<LengthUnit>(lengthToolStripMenuItem);
         }
 
         private void massToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -345,7 +345,7 @@ namespace LoreSoft.Calculator
             if (massToolStripMenuItem.DropDownItems.Count > 1)
                 return;
 
-            AddToMenuItem<MassUnit>(massToolStripMenuItem);
+            AddToConvertMenuItem<MassUnit>(massToolStripMenuItem);
 
         }
 
@@ -354,7 +354,7 @@ namespace LoreSoft.Calculator
             if (speedToolStripMenuItem.DropDownItems.Count > 1)
                 return;
 
-            AddToMenuItem<SpeedUnit>(speedToolStripMenuItem);
+            AddToConvertMenuItem<SpeedUnit>(speedToolStripMenuItem);
 
         }
 
@@ -363,7 +363,7 @@ namespace LoreSoft.Calculator
             if (temperatureToolStripMenuItem.DropDownItems.Count > 1)
                 return;
             
-            AddToMenuItem<TemperatureUnit>(temperatureToolStripMenuItem);
+            AddToConvertMenuItem<TemperatureUnit>(temperatureToolStripMenuItem);
         }
 
         private void timeToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -371,7 +371,7 @@ namespace LoreSoft.Calculator
             if (timeToolStripMenuItem.DropDownItems.Count > 1)
                 return;
             
-            AddToMenuItem<TimeUnit>(timeToolStripMenuItem);
+            AddToConvertMenuItem<TimeUnit>(timeToolStripMenuItem);
         }
 
         private void volumeToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
@@ -379,7 +379,7 @@ namespace LoreSoft.Calculator
             if (volumeToolStripMenuItem.DropDownItems.Count > 1)
                 return;
 
-            AddToMenuItem<VolumeUnit>(volumeToolStripMenuItem);
+            AddToConvertMenuItem<VolumeUnit>(volumeToolStripMenuItem);
         }
 
         private void convert_Click(object sender, EventArgs e)

@@ -38,6 +38,7 @@
     <DefaultExclude Include="**\*.user" />
     <DefaultExclude Include="**\*.suo" />
     <DefaultExclude Include="**\*.zip" />
+    <DefaultExclude Include="**\*.msi" />
     <DefaultExclude Include="**\*.log" />
   </ItemGroup>
 

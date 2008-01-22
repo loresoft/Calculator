@@ -24,6 +24,27 @@ namespace LoreSoft.MathExpressions.Tests
         }
 
         [Test()]
+        public void EvaluateNegative()
+        {
+            double expected = 2d + -1d;
+            double result = eval.Evaluate("2 + -1");
+
+            Assert.AreEqual(expected, result);
+
+            expected = -2d + 1d;
+            result = eval.Evaluate("-2 + 1");
+
+            Assert.AreEqual(expected, result);
+
+
+            expected = (2d + -1d) * (-1d + 2d);
+            result = eval.Evaluate("(2 + -1) * (-1 + 2)");
+
+            Assert.AreEqual(expected, result);
+
+        }
+
+        [Test()]
         public void EvaluateSimple()
         {
             double expected = (2d + 1d) * (1d + 2d);

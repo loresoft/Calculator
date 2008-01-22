@@ -308,7 +308,8 @@ namespace LoreSoft.MathExpressions
         private bool TryNumber(char c)
         {
             bool isNumber = NumberExpression.IsNumber(c);
-            bool isNegative = _expressionQueue.Count == 0 && NumberExpression.IsNegativeSign(c);
+            bool isNegative = NumberExpression.IsNegativeSign(c) &&
+                (_expressionQueue.Count == 0 || _symbolStack.Count > 0);
 
             if (!isNumber && !isNegative)
                 return false;

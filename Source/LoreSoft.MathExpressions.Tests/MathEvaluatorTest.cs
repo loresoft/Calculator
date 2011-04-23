@@ -6,24 +6,24 @@ using LoreSoft.MathExpressions;
 
 namespace LoreSoft.MathExpressions.Tests
 {
-    [TestFixture()]
+    [TestFixture]
     public class MathEvaluatorTest
     {
         private MathEvaluator eval;
-            
-        [SetUp()]
+
+        [SetUp]
         public void Setup()
         {
             eval = new MathEvaluator();
         }
 
-        [TearDown()]
+        [TearDown]
         public void TearDown()
         {
             //TODO: NUnit TearDown
         }
 
-        [Test()]
+        [Test]
         public void EvaluateNegative()
         {
             double expected = 2d + -1d;
@@ -44,7 +44,7 @@ namespace LoreSoft.MathExpressions.Tests
 
         }
 
-        [Test()]
+        [Test]
         public void EvaluateSimple()
         {
             double expected = (2d + 1d) * (1d + 2d);
@@ -63,11 +63,11 @@ namespace LoreSoft.MathExpressions.Tests
             Assert.AreEqual(expected, result);
         }
 
-        [Test()]
+        [Test]
         public void EvaluateComplex()
         {
             double expected = ((1d + 2d) + 3d) * 2d - 8d / 4d;
-            double result = eval.Evaluate("((1+2)+3)*2-8/4");
+            double result = eval.Evaluate("((1 + 2) + 3) * 2 - 8 / 4");
 
             Assert.AreEqual(expected, result);
 
@@ -82,7 +82,7 @@ namespace LoreSoft.MathExpressions.Tests
             Assert.AreEqual(expected, result);
         }
 
-        [Test()]
+        [Test]
         public void EvaluateComplexPower()
         {
             //TODO: Fix pow support
@@ -92,7 +92,7 @@ namespace LoreSoft.MathExpressions.Tests
             Assert.AreEqual(expected, result);
         }
 
-        [Test()]
+        [Test]
         public void EvaluateFunctionSin()
         {
             double expected = Math.Sin(45);
@@ -102,7 +102,7 @@ namespace LoreSoft.MathExpressions.Tests
 
         }
 
-        [Test()]
+        [Test]
         public void EvaluateFunctionSinMath()
         {
             double expected = Math.Sin(45) + 45;
@@ -112,7 +112,7 @@ namespace LoreSoft.MathExpressions.Tests
 
         }
 
-        [Test()]
+        [Test]
         public void EvaluateFunctionSinComplex()
         {
             double expected = 10 * Math.Sin(35 + 10) + 10;
@@ -120,9 +120,13 @@ namespace LoreSoft.MathExpressions.Tests
 
             Assert.AreEqual(expected, result);
 
+            expected = 10 * Math.Sin(35 + 10) / Math.Sin(2); ;
+            result = eval.Evaluate("10 * sin(35 + 10) / sin(2)");
+
+            Assert.AreEqual(expected, result);
         }
 
-        [Test()]
+        [Test]
         public void EvaluateVariableComplex()
         {
             int i = 10;
@@ -135,7 +139,7 @@ namespace LoreSoft.MathExpressions.Tests
 
         }
 
-        [Test()]
+        [Test]
         public void EvaluateVariableLoop()
         {
             eval.Variables.Add("i", 0);
@@ -152,6 +156,7 @@ namespace LoreSoft.MathExpressions.Tests
             Assert.AreEqual(expected, result);
         }
 
+
         [Test]
         public void EvaluateConvert()
         {
@@ -163,6 +168,18 @@ namespace LoreSoft.MathExpressions.Tests
             expected = 12;
             result = eval.Evaluate("1 [ft -> in]");
 
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void EvaluateFunctionOverFunction()
+        {
+            double expected = Math.Sin(5) / Math.Sin(2);
+            double result;
+            result = eval.Evaluate("(sin(5)) / (sin(2))");
+            Assert.AreEqual(expected, result);
+
+            result = eval.Evaluate("sin(5) / sin(2)");
             Assert.AreEqual(expected, result);
         }
     }

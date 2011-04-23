@@ -145,14 +145,21 @@ namespace LoreSoft.MathExpressions
 
         private void ParseExpressionToQueue()
         {
+            char l = '\0'; 
+            char c = '\0';
+
             do
             {
-                char c = (char)_expressionReader.Read();
+                // last non white space char
+                if (!char.IsWhiteSpace(c))
+                    l = c;
+
+                c = (char)_expressionReader.Read();
 
                 if (char.IsWhiteSpace(c))
                     continue;
 
-                if (TryNumber(c))
+                if (TryNumber(c, l))
                     continue;
 
                 if (TryString(c))
@@ -255,14 +262,26 @@ namespace LoreSoft.MathExpressions
             if (c != ')')
                 return false;
 
-            bool ok = false;
+            bool hasStart = false;
 
             while (_symbolStack.Count > 0)
             {
                 string p = _symbolStack.Pop();
                 if (p == "(")
                 {
-                    ok = true;
+                    hasStart = true;
+
+                    if (_symbolStack.Count == 0)
+                        break;
+
+                    string n = _symbolStack.Peek();
+                    if (FunctionExpression.IsFunction(n))
+                    {
+                        p = _symbolStack.Pop();
+                        IExpression f = GetExpressionFromSymbol(p);
+                        _expressionQueue.Enqueue(f);
+                    }
+
                     break;
                 }
 
@@ -270,7 +289,7 @@ namespace LoreSoft.MathExpressions
                 _expressionQueue.Enqueue(e);
             }
 
-            if (!ok)
+            if (!hasStart)
                 throw new ParseException(Resources.UnbalancedParentheses);
 
             return true;
@@ -305,11 +324,12 @@ namespace LoreSoft.MathExpressions
             return true;
         }
 
-        private bool TryNumber(char c)
+        private bool TryNumber(char c, char l)
         {
             bool isNumber = NumberExpression.IsNumber(c);
+            // only negative when last char is group start or symbol
             bool isNegative = NumberExpression.IsNegativeSign(c) &&
-                (_expressionQueue.Count == 0 || _symbolStack.Count > 0);
+                (l == '\0' || l == '(' || OperatorExpression.IsSymbol(l));
 
             if (!isNumber && !isNegative)
                 return false;

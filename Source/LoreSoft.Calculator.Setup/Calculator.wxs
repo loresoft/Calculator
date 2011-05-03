@@ -13,10 +13,10 @@
 
     <Media Id="1" Cabinet="Calculator.cab" EmbedCab="yes" />
 
-    <Icon Id="CalcIcon" SourceFile="..\LoreSoft.Calculator\Calculator.ico" />
+    <Icon Id="calculator.ico" SourceFile="..\LoreSoft.Calculator\Calculator.ico" />
 
     <Property Id="ALLUSERS" Value="1" />
-    <Property Id="ARPPRODUCTICON" Value="CalcIcon" />
+    <Property Id="ARPPRODUCTICON" Value="calculator.ico" />
     <Property Id="ARPHELPLINK" Value="http://www.loresoft.com/" />
     <Property Id="ARPURLINFOABOUT" Value="http://www.loresoft.com/" />
     <Property Id="ARPURLUPDATEINFO" Value="http://www.loresoft.com/" />
@@ -41,9 +41,8 @@
           <Shortcut Id="CalculatorShortcut"
                     Directory="ProgramMenuFolder"
                     Name="Calculator.NET"
-                    Advertise="yes" 
-                    DisplayResourceDll="[INSTALLDIR]Calculator.exe"
-                    DisplayResourceId="1" 
+                    Advertise="yes"
+                    Icon="calculator.ico" 
                     Description="Calculator.NET" />
           <netfx:NativeImage Id="CalculatorNativeImage" 
                              Platform="all" 
@@ -91,6 +90,7 @@
         </RegistryKey>
       </Component>
     </DirectoryRef>
+    
     <!-- Global Assembly Cache -->
     <DirectoryRef Id="GlobalAssemblyCache">
       <Component Id="Calculator.exe.gac" Guid="33D4735C-73F5-495F-8780-A43898C18EE7">

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="All"  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- Required Import to use MSBuild Community Tasks -->
-  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
     <BuildConfiguration>Release</BuildConfiguration>
     <BuildFolder>Build\$(BuildConfiguration)</BuildFolder>
     <PackageFolder>Build\Package</PackageFolder>
     <LibraryFolder>Libraries</LibraryFolder>
+    <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\$(LibraryFolder)</MSBuildCommunityTasksPath>
   </PropertyGroup>
+
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets"/>
 
   <PropertyGroup>
     <Major>1</Major>
-    <Minor>0</Minor>
+    <Minor>1</Minor>
 
     <Build>0</Build>
     <BindBuild>0</BindBuild>
@@ -23,7 +24,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Year>2007</Year>
+    <Year>2011</Year>
   </PropertyGroup>
 
   <ItemGroup>
@@ -60,7 +61,6 @@
     <RemoveDir Directories="Source\LoreSoft.MathExpressions.Tests\obj\" ContinueOnError="true" />
     <RemoveDir Directories="Source\LoreSoft.MathExpressions.Tests\bin\" ContinueOnError="true"/>
     <RemoveDir Directories="$(PackageFolder)" ContinueOnError="true" />
-    <RemoveDir Directories="$(BuildFolder)" ContinueOnError="true" />
   </Target>
 
   <Target Name="Version">
@@ -131,7 +131,7 @@
   </Target>
 
   <Target Name="Setup" DependsOnTargets="Package">
-    <MSBuild Projects="Source\LoreSoft.Calculator.Setup\Setup.sln"
+    <MSBuild Projects="Source\LoreSoft.Calculator.Setup\Calculator.sln"
              Properties="Configuration=$(BuildConfiguration)"/>
 
     <Copy SourceFiles="Source\LoreSoft.Calculator.Setup\bin\$(BuildConfiguration)\Calculator.msi"

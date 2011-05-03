@@ -43,14 +43,6 @@
     <DefaultExclude Include="**\*.log" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageFiles Include="$(BuildFolder)\*.exe" />
-    <PackageFiles Include="$(BuildFolder)\*.dll" />
-    <PackageFiles Include="$(BuildFolder)\*.config" />
-    <PackageFiles Include="$(BuildFolder)\*.xml" />
-    <PackageFiles Include="Documentation\Help\*.chm" />
-  </ItemGroup>
-
   <Target Name="Clean">
     <RemoveDir Directories="Source\LoreSoft.Calculator\obj\" ContinueOnError="true" />
     <RemoveDir Directories="Source\LoreSoft.Calculator\bin\" ContinueOnError="true"/>
@@ -122,12 +114,20 @@
     </CreateItem>
 
     <Zip Files="@(ZipFiles)"
-			 ZipFileName="Calculator.v$(Major).$(Minor).$(Build).$(Revision).zip" />
+         ZipFileName="Calculator.v$(Major).$(Minor).$(Build).$(Revision).zip" />
   </Target>
 
   <Target Name="Package" DependsOnTargets="Compile">
     <MakeDir Directories="$(PackageFolder)" />
+    
+    <CreateItem Include="$(BuildFolder)\*.*" Exclude="@(DefaultExclude)" >
+      <Output TaskParameter="Include" ItemName="PackageFiles" />
+    </CreateItem>
+
     <Copy SourceFiles="@(PackageFiles)" DestinationFolder="$(PackageFolder)"/>
+    <Copy SourceFiles="Documentation\Help\MathExpressions.chm" DestinationFolder="$(PackageFolder)"/>
+    
+    
   </Target>
 
   <Target Name="Setup" DependsOnTargets="Package">

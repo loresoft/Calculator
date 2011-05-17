@@ -18,13 +18,13 @@ namespace LoreSoft.Calculator
 
             if (Settings.Default.IsSingleInstance)
             {
-              SingleInstanceApplication.Current.CreateMainFormFactory = () => new CalculatorForm();
-              SingleInstanceApplication.Current.StartupNextInstance += Application_StartupNextInstance;
-              SingleInstanceApplication.Current.Run(args);
+                SingleInstanceApplication.Current.CreateMainFormFactory = () => new CalculatorForm();
+                SingleInstanceApplication.Current.StartupNextInstance += Application_StartupNextInstance;
+                SingleInstanceApplication.Current.Run(args);
             }
             else
             {
-              Application.Run(new CalculatorForm());
+                Application.Run(new CalculatorForm());
             }
         }
 

@@ -46,6 +46,8 @@ namespace LoreSoft.Calculator
                 ImageFileOptions.GetDebugger(CalculatorConstants.WindowsCalculatorName),
                 StringComparison.OrdinalIgnoreCase));
 
+            allowOnlyOneInstanceToolStripMenuItem.Checked = Settings.Default.IsSingleInstance;
+
             ResumeLayout(true);
         }
 
@@ -288,7 +290,7 @@ namespace LoreSoft.Calculator
         {
             Type enumType = typeof(T);
             int[] a = (int[])Enum.GetValues(enumType);
-            
+
             p.DropDownItems.Clear();
             for (int x = 0; x < a.Length; x++)
             {
@@ -298,7 +300,7 @@ namespace LoreSoft.Calculator
 
                 ToolStripMenuItem t = new ToolStripMenuItem(parrentName);
                 p.DropDownItems.Add(t);
-                
+
                 for (int i = 0; i < a.Length; i++)
                 {
                     if (x == i)
@@ -362,7 +364,7 @@ namespace LoreSoft.Calculator
         {
             if (temperatureToolStripMenuItem.DropDownItems.Count > 1)
                 return;
-            
+
             AddToConvertMenuItem<TemperatureUnit>(temperatureToolStripMenuItem);
         }
 
@@ -370,7 +372,7 @@ namespace LoreSoft.Calculator
         {
             if (timeToolStripMenuItem.DropDownItems.Count > 1)
                 return;
-            
+
             AddToConvertMenuItem<TimeUnit>(timeToolStripMenuItem);
         }
 
@@ -401,7 +403,8 @@ namespace LoreSoft.Calculator
 
         private void allowOnlyOneInstanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          Settings.Default.IsSingleInstance = allowOnlyOneInstanceToolStripMenuItem.Checked;
+            Settings.Default.IsSingleInstance = allowOnlyOneInstanceToolStripMenuItem.Checked;
+            Settings.Default.Save();
         }
     }
 }

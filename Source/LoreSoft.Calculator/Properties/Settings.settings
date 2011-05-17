@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Calculator.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LoreSoft.Calculator.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="CalculatorSize" Type="System.Drawing.Size" Scope="User">
@@ -16,6 +16,9 @@
     </Setting>
     <Setting Name="CalculatorWindowState" Type="System.Windows.Forms.FormWindowState" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IsSingleInstance" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

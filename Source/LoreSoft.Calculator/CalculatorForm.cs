@@ -398,5 +398,10 @@ namespace LoreSoft.Calculator
             inputTextBox.Select(start + pad + length, 0);
             inputTextBox.ResumeLayout();
         }
+
+        private void allowOnlyOneInstanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          Settings.Default.IsSingleInstance = allowOnlyOneInstanceToolStripMenuItem.Checked;
+        }
     }
 }

@@ -77,5 +77,17 @@ namespace LoreSoft.Calculator.Properties {
                 this["CalculatorWindowState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsSingleInstance {
+            get {
+                return ((bool)(this["IsSingleInstance"]));
+            }
+            set {
+                this["IsSingleInstance"] = value;
+            }
+        }
     }
 }

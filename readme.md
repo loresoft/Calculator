@@ -1,4 +1,4 @@
-Calculator
+Calculator.NET
 ==========
 
 Calculator.NET - Calculator that evaluates math expressions

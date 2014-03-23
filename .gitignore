@@ -1,0 +1,15 @@
+[Bb]in
+[Oo]bj
+packages
+[Bb]uild
+TestResults
+*.suo
+*.user
+*.[Cc]ache
+*[Rr]esharper*
+*.zip
+*.nupkg
+*.msi
+*.chm
+*.dbmdl
+/Package

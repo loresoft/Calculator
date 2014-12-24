@@ -19,7 +19,7 @@ The library supports math expressions, functions unit conversion and variables. 
     //use variable
     result = eval.Evaluate("answer * 10");
     //add variable
-    eval.Variables.Add("x", 10);            
+    eval.Variables.Add("x", 10);
     result = eval.Evaluate("x * 10");
     
 Calculator that evaluates math expressions. 

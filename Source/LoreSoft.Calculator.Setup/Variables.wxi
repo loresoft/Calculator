@@ -2,7 +2,7 @@
 <Include>
   <!-- Version -->
   <?ifndef PackageVersion?>
-  <?define PackageVersion = "1.0.0.0" ?>
+  <?define PackageVersion = "1.0.0" ?>
   <?endif?>
   
   <?ifndef Configuration?>

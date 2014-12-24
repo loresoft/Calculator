@@ -20,6 +20,8 @@
              ShortNames="no"
              SummaryCodepage="1252" />
 
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
     <Media Id="1" Cabinet="Calculator.cab" EmbedCab="yes" />
 
     <Icon Id="calculator.ico" SourceFile="..\LoreSoft.Calculator\Calculator.ico" />

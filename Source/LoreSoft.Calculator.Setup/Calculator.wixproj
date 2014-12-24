@@ -14,13 +14,14 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\Debug\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>Debug</DefineConstants>
+    <DefineConstants>Debug;PackageDir=$(PackageDir);PackageVersion=$(PackageVersion)</DefineConstants>
     <Cultures>en-us</Cultures>
     <WixVariables>WixUIBannerBmp=Banner.bmp;WixUIDialogBmp=Dialog.bmp</WixVariables>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\Release\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>PackageDir=$(PackageDir);PackageVersion=$(PackageVersion)</DefineConstants>
     <Cultures>en-us</Cultures>
     <WixVariables>WixUIBannerBmp=Banner.bmp;WixUIDialogBmp=Dialog.bmp</WixVariables>
   </PropertyGroup>
@@ -29,7 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Variables.wxi" />
-  </ItemGroup>  
+  </ItemGroup>
   <ItemGroup>
     <WixExtension Include="WixUIExtension">
       <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>

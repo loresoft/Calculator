@@ -27,6 +27,7 @@
     <AssemblyFileVersion>$(Major).$(Minor).$(Patch).$(BuildNumber)</AssemblyFileVersion>
     <AssemblyInformationalVersion>$(Major).$(Minor).$(Patch).$(BuildNumber)</AssemblyInformationalVersion>
     <PackageVersion>$(Major).$(Minor).$(Patch).$(BuildNumber)</PackageVersion>
+    <InstallVersion>$(Major).$(Minor).$(BuildNumber)</InstallVersion>
   </PropertyGroup>
 
 
@@ -118,7 +119,7 @@
 
   <Target Name="Installer" DependsOnTargets="Package">
     <MSBuild Projects="$(SourceFolder)\LoreSoft.Calculator.Setup\Calculator.sln"
-             Properties="Configuration=$(BuildConfiguration);PackageDir=$(PackageFolder);PackageVersion=$(PackageVersion)"/>
+             Properties="Configuration=$(BuildConfiguration);PackageDir=$(PackageFolder);PackageVersion=$(InstallVersion)"/>
 
     <Copy SourceFiles="$(SourceFolder)\LoreSoft.Calculator.Setup\bin\$(BuildConfiguration)\Calculator.msi"
           DestinationFiles="Calculator.v$(PackageVersion).msi" />

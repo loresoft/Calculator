@@ -1,0 +1,17 @@
+version: 1.2.0.{build}
+skip_tags: true
+environment:
+  Major: 1
+  Minor: 2
+  Patch: 0
+configuration: Release
+before_build:
+- .\bootstrap.cmd
+build:
+  project: master.proj
+  verbosity: minimal
+test: off
+artifacts:
+- path: '*.nupkg'
+- path: '*.zip'
+- path: '*.msi'

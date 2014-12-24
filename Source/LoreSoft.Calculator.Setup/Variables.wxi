@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <!-- Version -->
+  <?ifndef PackageVersion?>
+  <?define PackageVersion = "1.0.0.0" ?>
+  <?endif?>
+  
+  <?ifndef Configuration?>
+  <?define Configuration = "Release" ?>
+  <?endif?>
+
+
+  <!-- General -->
+  <?define ProductName = "Calculator.NET" ?>
+  <?define ProductVersionedName = "$(var.ProductName) $(var.PackageVersion)" ?>
+
+  <?ifndef PackageDir?>
+  <?define PackageDir = "..\..\Build\Package" ?>
+  <?endif?>
+
+  <?define PackageDescription = "$(var.ProductName) - Calculator that evaluates math expressions" ?>
+  <?define PackageComments = "$(var.ProductName) $(var.PackageVersion)" ?>
+  <?define PackageUrl = "http://www.loresoft.com/"?>
+  <?define PackageManufacturer = "LoreSoft" ?>
+
+  <!-- GUIDs -->
+  <?define UpgradeGuid = "a7a77c97-befa-4f82-96e9-c73f11c5b4cd" ?>
+
+</Include>

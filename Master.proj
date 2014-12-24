@@ -2,57 +2,37 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <BuildConfiguration>Release</BuildConfiguration>
-    <BuildFolder>Build\$(BuildConfiguration)</BuildFolder>
-    <PackageFolder>Build\Package</PackageFolder>
-    <LibraryFolder>Libraries</LibraryFolder>
-    <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\$(LibraryFolder)</MSBuildCommunityTasksPath>
+    <BuildConfiguration  Condition=" '$(BuildConfiguration)' == '' ">Release</BuildConfiguration>
+
+    <BuildFolder>$(MSBuildProjectDirectory)\Build\$(BuildConfiguration)</BuildFolder>
+    <ToolFolder>$(MSBuildProjectDirectory)\Tools</ToolFolder>
+    <SourceFolder>$(MSBuildProjectDirectory)\Source</SourceFolder>
+    <PackageFolder>$(MSBuildProjectDirectory)\Build\Package</PackageFolder>
+
+    <MSBuildCommunityTasksPath>$(ToolFolder)\MSBuildTasks\tools</MSBuildCommunityTasksPath>
   </PropertyGroup>
 
   <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets"/>
 
   <PropertyGroup>
-    <Major>1</Major>
-    <Minor>1</Minor>
+    <BuildNumber Condition=" '$(APPVEYOR_BUILD_NUMBER)' != '' ">$(APPVEYOR_BUILD_NUMBER)</BuildNumber>
+    <BuildNumber Condition=" '$(BUILD_NUMBER)' != '' ">$(BUILD_NUMBER)</BuildNumber>
+    <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
 
-    <Build>0</Build>
-    <BindBuild>0</BindBuild>
+    <Major Condition=" '$(Major)' == '' ">1</Major>
+    <Minor Condition=" '$(Minor)' == '' ">2</Minor>
+    <Patch Condition=" '$(Patch)' == '' ">0</Patch>
 
-    <Revision>0</Revision>
-    <BindRevision>0</BindRevision>
-
+    <AssemblyVersion>$(Major).$(Minor).0.0</AssemblyVersion>
+    <AssemblyFileVersion>$(Major).$(Minor).$(Patch).$(BuildNumber)</AssemblyFileVersion>
+    <AssemblyInformationalVersion>$(Major).$(Minor).$(Patch).$(BuildNumber)</AssemblyInformationalVersion>
+    <PackageVersion>$(Major).$(Minor).$(Patch).$(BuildNumber)</PackageVersion>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <Year>2011</Year>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <DefaultExclude Include="**\.svn\**" />
-    <DefaultExclude Include="**\bin\**" />
-    <DefaultExclude Include="**\obj\**" />
-    <DefaultExclude Include="**\Debug\**" />
-    <DefaultExclude Include="**\Test\**" />
-    <DefaultExclude Include="Source\**\Release\**" />
-    <DefaultExclude Include="Build\Package\**" />
-    <DefaultExclude Include="**\*.resharper" />
-    <DefaultExclude Include="**\*.user" />
-    <DefaultExclude Include="**\*.suo" />
-    <DefaultExclude Include="**\*.zip" />
-    <DefaultExclude Include="**\*.msi" />
-    <DefaultExclude Include="**\*.log" />
-  </ItemGroup>
 
   <Target Name="Clean">
-    <RemoveDir Directories="Source\LoreSoft.Calculator\obj\" ContinueOnError="true" />
-    <RemoveDir Directories="Source\LoreSoft.Calculator\bin\" ContinueOnError="true"/>
-    <RemoveDir Directories="Source\LoreSoft.Calculator.Setup\obj\" ContinueOnError="true" />
-    <RemoveDir Directories="Source\LoreSoft.Calculator.Setup\bin\" ContinueOnError="true"/>
-    <RemoveDir Directories="Source\LoreSoft.MathExpressions\obj\" ContinueOnError="true" />
-    <RemoveDir Directories="Source\LoreSoft.MathExpressions\bin\" ContinueOnError="true"/>
-    <RemoveDir Directories="Source\LoreSoft.MathExpressions.Tests\obj\" ContinueOnError="true" />
-    <RemoveDir Directories="Source\LoreSoft.MathExpressions.Tests\bin\" ContinueOnError="true"/>
-    <RemoveDir Directories="$(PackageFolder)" ContinueOnError="true" />
+    <DeleteTree Directories="**\obj\**;**\bin\**" />
+    <DeleteTree Directories="$(BuildFolder)" ContinueOnError="true" />
   </Target>
 
   <Target Name="Version">
@@ -60,16 +40,10 @@
       <Output TaskParameter="Year" PropertyName="Year" />
     </Time>
 
-    <SvnVersion LocalPath="$(MSBuildProjectDirectory)">
-      <Output TaskParameter="Revision" PropertyName="Revision" />
-    </SvnVersion>
+    <Message Text="Version: $(AssemblyInformationalVersion)"/>
 
-    <Message Text="Version: $(Major).$(Minor).$(Build).$(Revision)"/>
-  </Target>
-
-  <Target Name="AssemblyInfo" DependsOnTargets="Version">
     <AssemblyInfo CodeLanguage="CS"
-                  OutputFile="Source\LoreSoft.Calculator\Properties\AssemblyInfo.cs"
+                  OutputFile="$(SourceFolder)\LoreSoft.Calculator\Properties\AssemblyInfo.cs"
                   AssemblyTitle="Calculator.NET"
                   AssemblyProduct="Calculator.NET"
                   AssemblyDescription="Calculator that can parse math expression."
@@ -78,14 +52,14 @@
                   Guid="43484513-ed81-4a9f-8de4-be3abfe106b0"
                   ComVisible="false"
                   CLSCompliant="true"
-                  AssemblyVersion="$(Major).$(Minor).$(BindBuild).$(BindRevision)"
-                  AssemblyFileVersion="$(Major).$(Minor).$(Build).$(Revision)"
-                  AssemblyInformationalVersion="$(Major).$(Minor).$(Build).$(Revision)"
-                  GenerateClass="true"
-                  Condition="$(Revision) != '0' "/>
+                  AssemblyConfiguration="$(BuildConfiguration)"
+                  AssemblyVersion="$(AssemblyVersion)"
+                  AssemblyFileVersion="$(AssemblyFileVersion)"
+                  AssemblyInformationalVersion="$(AssemblyInformationalVersion)"
+                  GenerateClass="true" />
 
     <AssemblyInfo CodeLanguage="CS"
-                  OutputFile="Source\LoreSoft.MathExpressions\Properties\AssemblyInfo.cs"
+                  OutputFile="$(SourceFolder)\LoreSoft.MathExpressions\Properties\AssemblyInfo.cs"
                   AssemblyTitle="LoreSoft.MathExpressions"
                   AssemblyProduct="LoreSoft.MathExpressions"
                   AssemblyDescription="Math Expression Parser."
@@ -94,54 +68,63 @@
                   Guid="348985f4-3fcf-4ec3-b207-6f09e918b297"
                   ComVisible="false"
                   CLSCompliant="true"
-                  AssemblyVersion="$(Major).$(Minor).$(BindBuild).$(BindRevision)"
-                  AssemblyFileVersion="$(Major).$(Minor).$(Build).$(Revision)"
-                  AssemblyInformationalVersion="$(Major).$(Minor).$(Build).$(Revision)"
-                  GenerateClass="true"
-                  Condition="$(Revision) != '0' "/>
+                  AssemblyConfiguration="$(BuildConfiguration)"
+                  AssemblyVersion="$(AssemblyVersion)"
+                  AssemblyFileVersion="$(AssemblyFileVersion)"
+                  AssemblyInformationalVersion="$(AssemblyInformationalVersion)"
+                  GenerateClass="true" />
 
   </Target>
 
-
-  <Target Name="Compile" DependsOnTargets="Clean;AssemblyInfo">
-    <MSBuild Projects="Source\Calculator.sln"
+  <Target Name="Compile" DependsOnTargets="Clean;Version">
+    <MSBuild Projects="$(SourceFolder)\Calculator.sln"
              Properties="Configuration=$(BuildConfiguration)"/>
   </Target>
 
-  <Target Name="Zip" DependsOnTargets="Compile">
-    <CreateItem Include="**\*.*" Exclude="@(DefaultExclude)" >
-      <Output TaskParameter="Include" ItemName="ZipFiles" />
-    </CreateItem>
+  <Target Name="Test" DependsOnTargets="Compile">
+    <ItemGroup>
+      <TestAssemblies Include="$(SourceFolder)\**\*.Tests\bin\$(BuildConfiguration)\*.Tests.dll"/>
+    </ItemGroup>
 
-    <Zip Files="@(ZipFiles)"
-         ZipFileName="Calculator.v$(Major).$(Minor).$(Build).$(Revision).zip" />
+    <Message Text="AppVeyor: $(APPVEYOR)"/>
+
+    <exec Condition=" '$(APPVEYOR)' != '' "
+          Command="nunit-console.exe &quot;%(TestAssemblies.Identity)&quot;"/>
+
+    <exec Condition=" '$(APPVEYOR)' == '' "
+          Command="$(ToolFolder)\NUnit.Runners\tools\nunit-console.exe &quot;%(TestAssemblies.Identity)&quot;"/>
   </Target>
 
   <Target Name="Package" DependsOnTargets="Compile">
     <MakeDir Directories="$(PackageFolder)" />
     
-    <CreateItem Include="$(BuildFolder)\*.*" Exclude="@(DefaultExclude)" >
-      <Output TaskParameter="Include" ItemName="PackageFiles" />
-    </CreateItem>
+    <ItemGroup>
+      <PackageFiles Include="$(BuildFolder)\*.*" />
+    </ItemGroup>
 
     <Copy SourceFiles="@(PackageFiles)" DestinationFolder="$(PackageFolder)"/>
     <Copy SourceFiles="Documentation\Help\MathExpressions.chm" DestinationFolder="$(PackageFolder)"/>
-    
-    
+  </Target>
+  
+  <Target Name="Zip" DependsOnTargets="Package">
+    <ItemGroup>
+      <ZipFiles Include="$(PackageFolder)\*.*" />
+    </ItemGroup>
+
+    <Zip Files="@(ZipFiles)"
+         WorkingDirectory="$(PackageFolder)"
+         ZipFileName="Calculator.v$(PackageVersion).zip" />
   </Target>
 
-  <Target Name="Setup" DependsOnTargets="Package">
-    <MSBuild Projects="Source\LoreSoft.Calculator.Setup\Calculator.sln"
-             Properties="Configuration=$(BuildConfiguration)"/>
+  <Target Name="Installer" DependsOnTargets="Package">
+    <MSBuild Projects="$(SourceFolder)\LoreSoft.Calculator.Setup\Calculator.sln"
+             Properties="Configuration=$(BuildConfiguration);PackageDir=$(PackageFolder);PackageVersion=$(PackageVersion)"/>
 
-    <Copy SourceFiles="Source\LoreSoft.Calculator.Setup\bin\$(BuildConfiguration)\Calculator.msi"
-          DestinationFiles="Calculator.msi" />
+    <Copy SourceFiles="$(SourceFolder)\LoreSoft.Calculator.Setup\bin\$(BuildConfiguration)\Calculator.msi"
+          DestinationFiles="Calculator.v$(PackageVersion).msi" />
   </Target>
 
-  <Target Name="Build">
-    <CallTarget Targets="Zip" />
-    <CallTarget Targets="Package" />
-    <CallTarget Targets="Setup" />
+  <Target Name="Build" DependsOnTargets="Test;Zip;Installer"> 
   </Target>
 
 </Project>

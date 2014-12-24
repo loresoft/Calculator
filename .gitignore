@@ -13,3 +13,4 @@ TestResults
 *.chm
 *.dbmdl
 /Package
+/Tools

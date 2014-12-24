@@ -3,6 +3,7 @@ Calculator.NET
 
 Calculator.NET - Calculator that evaluates math expressions
 
+[![Build status](https://ci.appveyor.com/api/projects/status/i4vqogfwurshk6ff?svg=true)](https://ci.appveyor.com/project/LoreSoft/calculator)
 
 The library supports math expressions, functions unit conversion and variables. Below are some examples of using the library directly.
 

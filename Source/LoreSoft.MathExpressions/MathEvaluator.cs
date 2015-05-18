@@ -168,6 +168,9 @@ namespace LoreSoft.MathExpressions
                 if (TryStartGroup(c))
                     continue;
 
+                if (TryComma(c))
+                    continue;
+
                 if (TryOperator(c))
                     continue;
 
@@ -254,6 +257,14 @@ namespace LoreSoft.MathExpressions
                 return false;
 
             _symbolStack.Push(c.ToString());
+            return true;
+        }
+
+        private bool TryComma(char c)
+        {
+            if (c != ',')
+                return false;
+
             return true;
         }
 

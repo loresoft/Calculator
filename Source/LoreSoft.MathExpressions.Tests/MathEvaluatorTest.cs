@@ -113,6 +113,46 @@ namespace LoreSoft.MathExpressions.Tests
         }
 
         [Test]
+        public void EvaluateFunctionMin()
+        {
+            double expected = Math.Min(45, 50);
+            double result = eval.Evaluate("min(45, 50)");
+
+            Assert.AreEqual(expected, result);
+
+        }
+
+        [Test]
+        public void EvaluateFunctionMinMath()
+        {
+            double expected = Math.Min(45, 50) + 45;
+            double result = eval.Evaluate("min(45, 50) + 45");
+
+            Assert.AreEqual(expected, result);
+
+        }
+
+        [Test]
+        public void EvaluateFunctionMax()
+        {
+            double expected = Math.Max(45, 50);
+            double result = eval.Evaluate("max(45, 50)");
+
+            Assert.AreEqual(expected, result);
+
+        }
+
+        [Test]
+        public void EvaluateFunctionMaxMath()
+        {
+            double expected = Math.Max(45, 50) + 45;
+            double result = eval.Evaluate("max(45, 50) + 45");
+
+            Assert.AreEqual(expected, result);
+
+        }
+
+        [Test]
         public void EvaluateFunctionSinComplex()
         {
             double expected = 10 * Math.Sin(35 + 10) + 10;

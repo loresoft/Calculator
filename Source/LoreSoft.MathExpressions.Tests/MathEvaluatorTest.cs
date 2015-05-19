@@ -41,7 +41,13 @@ namespace LoreSoft.MathExpressions.Tests
             result = eval.Evaluate("(2 + -1) * (-1 + 2)");
 
             Assert.AreEqual(expected, result);
+        }
 
+        [Test]
+        public void EvaluateNegative2()
+        {
+            double result = eval.Evaluate("(-4-3) *5");
+            Assert.AreEqual(-35d, result);
         }
 
         [Test]

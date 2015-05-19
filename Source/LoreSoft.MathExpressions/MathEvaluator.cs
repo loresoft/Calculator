@@ -231,7 +231,7 @@ namespace LoreSoft.MathExpressions
             _buffer.Append(c);
 
             char p = (char)_expressionReader.Peek();
-            while (char.IsLetter(p))
+            while (char.IsLetter(p) || char.IsNumber(p))
             {
                 _buffer.Append((char)_expressionReader.Read());
                 p = (char)_expressionReader.Peek();
@@ -319,7 +319,7 @@ namespace LoreSoft.MathExpressions
                         break;
 
                     string n = _symbolStack.Peek();
-                    if (FunctionExpression.IsFunction(n))
+                    if (IsFunction(n))
                     {
                         p = _symbolStack.Pop();
                         IExpression f = GetExpressionFromSymbol(p);

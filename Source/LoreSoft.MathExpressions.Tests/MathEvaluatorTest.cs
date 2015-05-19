@@ -45,6 +45,13 @@ namespace LoreSoft.MathExpressions.Tests
         }
 
         [Test]
+        public void EvaluateLog10()
+        {
+            double result = eval.Evaluate("log10(10)");
+            Assert.AreEqual(1d, result);
+        }
+
+        [Test]
         public void EvaluateSimple()
         {
             double expected = (2d + 1d) * (1d + 2d);
@@ -276,9 +283,8 @@ namespace LoreSoft.MathExpressions.Tests
             Assert.AreEqual(expected, result);
         }
 
-        class TestExpr : IExpression
+        class MultiplyBy10Expr : IExpression
         {
-
             public int ArgumentCount
             {
                 get
@@ -302,15 +308,49 @@ namespace LoreSoft.MathExpressions.Tests
             }
         }
 
-        [TestCase("Test(5)", 50d)]
-        [TestCase("(Test(5))", 50d)]
-        [TestCase("Test(5) + 10", 60d)]
-        [TestCase("Test(Test(5))", 500d)]
-        public void EvaluateCustomFunction(string expr, double expected)
+        [TestCase("MB10(5)", 50d)]
+        [TestCase("(MB10(5))", 50d)]
+        [TestCase("MB10(5) + 10", 60d)]
+        [TestCase("MB10(MB10(5))", 500d)]
+        public void EvaluateCustomUnaryFunction(string expr, double expected)
         {
-            eval.RegisterFunction("Test", new TestExpr());
+            eval.RegisterFunction("MB10", new MultiplyBy10Expr());
             double result = eval.Evaluate(expr);
             Assert.AreEqual(expected, result);
         }
+
+        class AddThreeNumbers : IExpression
+        {
+            public int ArgumentCount
+            {
+                get
+                {
+                    return 3;
+                }
+            }
+
+            private double AddThem(double[] numbers)
+            {
+                return numbers[0] + numbers[1] + numbers[2];
+            }
+
+            public MathEvaluate Evaluate
+            {
+                get { return AddThem; }
+                set
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
+        [Test]
+        public void EvaluateCustomTernaryFunction()
+        {
+            eval.RegisterFunction("A3", new AddThreeNumbers());
+            double result = eval.Evaluate("A3(1,2,3)");
+            Assert.AreEqual(6d, result);
+        }
+
     }
 }

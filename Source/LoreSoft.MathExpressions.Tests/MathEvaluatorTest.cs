@@ -275,5 +275,42 @@ namespace LoreSoft.MathExpressions.Tests
             result = eval.Evaluate("sin(5) / sin(2)");
             Assert.AreEqual(expected, result);
         }
+
+        class TestExpr : IExpression
+        {
+
+            public int ArgumentCount
+            {
+                get
+                {
+                    return 1; 
+                }
+            }
+
+            private double Test(double[] numbers)
+            {
+                return 10*numbers[0];
+            }
+
+            public MathEvaluate Evaluate
+            {
+                get { return Test; }
+                set
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
+        [TestCase("Test(5)", 50d)]
+        [TestCase("(Test(5))", 50d)]
+        [TestCase("Test(5) + 10", 60d)]
+        [TestCase("Test(Test(5))", 500d)]
+        public void EvaluateCustomFunction(string expr, double expected)
+        {
+            eval.RegisterFunction("Test", new TestExpr());
+            double result = eval.Evaluate(expr);
+            Assert.AreEqual(expected, result);
+        }
     }
 }

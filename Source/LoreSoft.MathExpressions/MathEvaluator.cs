@@ -291,13 +291,13 @@ namespace LoreSoft.MathExpressions
 
         private char PeekNextNonWhitespaceChar()
         {
-            char nextChar = (char) _expressionReader.Peek();
-            while (nextChar != -1 && char.IsWhiteSpace(nextChar))
+            int next = _expressionReader.Peek();
+            while (next != -1 && char.IsWhiteSpace((char)next))
             {
                 _expressionReader.Read();
-                nextChar = (char) _expressionReader.Peek();
+                next = _expressionReader.Peek();
             }
-            return nextChar;
+            return (char)next;
         }
 
        

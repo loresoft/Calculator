@@ -43,6 +43,10 @@ namespace LoreSoft.MathExpressions
         private List<string> _innerFunctions;
         private uint _nestedFunctionDepth;
         private StringReader _expressionReader;
+        private VariableDictionary _variables;
+        private ReadOnlyCollection<string> _functions;        
+        private char _currentChar;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MathEvaluator"/> class.
@@ -62,7 +66,6 @@ namespace LoreSoft.MathExpressions
             _nestedFunctionDepth = 0;
         }
 
-        private VariableDictionary _variables;
 
         /// <summary>
         /// Gets the variables collections.
@@ -72,8 +75,6 @@ namespace LoreSoft.MathExpressions
         {
             get { return _variables; }
         }
-
-        private ReadOnlyCollection<string> _functions;
 
         /// <summary>Gets the functions available to <see cref="MathEvaluator"/>.</summary>
         /// <value>The functions for <see cref="MathEvaluator"/>.</value>
@@ -149,54 +150,54 @@ namespace LoreSoft.MathExpressions
 
         private void ParseExpressionToQueue()
         {
-            char l = '\0'; 
-            char c = '\0';
+            char lastChar = '\0'; 
+            _currentChar = '\0';
 
             do
             {
                 // last non white space char
-                if (!char.IsWhiteSpace(c))
-                    l = c;
+                if (!char.IsWhiteSpace(_currentChar))
+                    lastChar = _currentChar;
 
-                c = (char)_expressionReader.Read();
+                _currentChar = (char)_expressionReader.Read();
 
-                if (char.IsWhiteSpace(c))
+                if (char.IsWhiteSpace(_currentChar))
                     continue;
 
-                if (TryNumber(c, l))
+                if (TryNumber(lastChar))
                     continue;
 
-                if (TryString(c))
+                if (TryString())
                     continue;
 
-                if (TryStartGroup(c))
+                if (TryStartGroup())
                     continue;
 
-                if (TryComma(c))
+                if (TryComma())
                     continue;
 
-                if (TryOperator(c))
+                if (TryOperator())
                     continue;
 
-                if (TryEndGroup(c))
+                if (TryEndGroup())
                     continue;
 
-                if (TryConvert(c))
+                if (TryConvert())
                     continue;
 
-                throw new ParseException(Resources.InvalidCharacterEncountered + c);
+                throw new ParseException(Resources.InvalidCharacterEncountered + _currentChar);
             } while (_expressionReader.Peek() != -1);
 
             ProcessSymbolStack();
         }
 
-        private bool TryConvert(char c)
+        private bool TryConvert()
         {
-            if (c != '[')
+            if (_currentChar != '[')
                 return false;
 
             _buffer.Length = 0;
-            _buffer.Append(c);
+            _buffer.Append(_currentChar);
 
             char p = (char)_expressionReader.Peek();
             while (char.IsLetter(p) || char.IsWhiteSpace(p) || p == '-' || p == '>' || p == ']')
@@ -222,13 +223,13 @@ namespace LoreSoft.MathExpressions
             throw new ParseException(Resources.InvalidConvertionExpression + _buffer);
         }
 
-        private bool TryString(char c)
+        private bool TryString()
         {
-            if (!char.IsLetter(c))
+            if (!char.IsLetter(_currentChar))
                 return false;
 
             _buffer.Length = 0;
-            _buffer.Append(c);
+            _buffer.Append(_currentChar);
 
             char p = (char)_expressionReader.Peek();
             while (char.IsLetter(p) || char.IsNumber(p))
@@ -256,9 +257,9 @@ namespace LoreSoft.MathExpressions
             throw new ParseException(Resources.InvalidVariableEncountered + _buffer);
         }
 
-        private bool TryStartGroup(char c)
+        private bool TryStartGroup()
         {
-            if (c != '(')
+            if (_currentChar != '(')
                 return false;
 
             if (PeekNextNonWhitespaceChar() == ',')
@@ -266,24 +267,24 @@ namespace LoreSoft.MathExpressions
                 throw new ParseException(Resources.InvalidCharacterEncountered + ",");
             }
 
-            _symbolStack.Push(c.ToString());
+            _symbolStack.Push(_currentChar.ToString());
             return true;
         }
 
-        private bool TryComma(char c)
+        private bool TryComma()
         {
-            if (c != ',')
+            if (_currentChar != ',')
                 return false;
 
             if (_nestedFunctionDepth <= 0)
             {
-                throw new ParseException(Resources.InvalidCharacterEncountered + c);
+                throw new ParseException(Resources.InvalidCharacterEncountered + _currentChar);
             }
                         
             char nextChar = PeekNextNonWhitespaceChar();
             if (nextChar == ')' || nextChar == ',')
             {
-                throw new ParseException(Resources.InvalidCharacterEncountered + c);
+                throw new ParseException(Resources.InvalidCharacterEncountered + _currentChar);
             }
 
             return true;
@@ -301,9 +302,9 @@ namespace LoreSoft.MathExpressions
         }
 
        
-        private bool TryEndGroup(char c)
+        private bool TryEndGroup()
         {
-            if (c != ')')
+            if (_currentChar != ')')
                 return false;
 
             bool hasStart = false;
@@ -340,13 +341,13 @@ namespace LoreSoft.MathExpressions
             return true;
         }
 
-        private bool TryOperator(char c)
+        private bool TryOperator()
         {
-            if (!OperatorExpression.IsSymbol(c))
+            if (!OperatorExpression.IsSymbol(_currentChar))
                 return false;
 
             bool repeat;
-            string s = c.ToString();
+            string s = _currentChar.ToString();
 
             do
             {
@@ -369,23 +370,24 @@ namespace LoreSoft.MathExpressions
             return true;
         }
 
-        private bool TryNumber(char c, char l)
+        private bool TryNumber(char lastChar)
         {
-            bool isNumber = NumberExpression.IsNumber(c);
+            bool isNumber = NumberExpression.IsNumber(_currentChar);
             // only negative when last char is group start or symbol
-            bool isNegative = NumberExpression.IsNegativeSign(c) &&
-                (l == '\0' || l == '(' || OperatorExpression.IsSymbol(l));
+            bool isNegative = NumberExpression.IsNegativeSign(_currentChar) &&
+                              (lastChar == '\0' || lastChar == '(' || OperatorExpression.IsSymbol(lastChar));
 
             if (!isNumber && !isNegative)
                 return false;
 
             _buffer.Length = 0;
-            _buffer.Append(c);
+            _buffer.Append(_currentChar);
 
             char p = (char)_expressionReader.Peek();
             while (NumberExpression.IsNumber(p))
             {
-                _buffer.Append((char)_expressionReader.Read());
+                _currentChar = (char) _expressionReader.Read();
+                _buffer.Append(_currentChar);
                 p = (char)_expressionReader.Peek();
             }
 

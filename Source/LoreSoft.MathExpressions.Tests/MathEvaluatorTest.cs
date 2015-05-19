@@ -28,26 +28,21 @@ namespace LoreSoft.MathExpressions.Tests
         {
             double expected = 2d + -1d;
             double result = eval.Evaluate("2 + -1");
-
             Assert.AreEqual(expected, result);
 
             expected = -2d + 1d;
             result = eval.Evaluate("-2 + 1");
-
             Assert.AreEqual(expected, result);
-
 
             expected = (2d + -1d) * (-1d + 2d);
             result = eval.Evaluate("(2 + -1) * (-1 + 2)");
-
             Assert.AreEqual(expected, result);
-        }
 
-        [Test]
-        public void EvaluateNegative2()
-        {
-            double result = eval.Evaluate("(-4-3) *5");
-            Assert.AreEqual(-35d, result);
+            // this failed due to a bug in parsing whereby the minus sign was erroneously mistaken for a negative sign.  
+            // which left the -4 on the calculationStack at the end of evaluation. 
+            expected = (-4 - 3) * 5;
+            result = eval.Evaluate("(-4-3) *5");
+            Assert.AreEqual(expected, result);
         }
 
         [Test]

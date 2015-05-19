@@ -113,6 +113,14 @@ namespace LoreSoft.MathExpressions.Tests
         }
 
         [Test]
+        public void EvaluateFunctionPow()
+        {
+            double expected = Math.Pow(45, 2);
+            double result = eval.Evaluate("pow(45, 2)");
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
         public void EvaluateFunctionMin()
         {
             double expected = Math.Min(45, 50);
@@ -129,8 +137,34 @@ namespace LoreSoft.MathExpressions.Tests
             double result = eval.Evaluate("min(45, 50) + 45");
 
             Assert.AreEqual(expected, result);
-
         }
+
+        [Test]
+        public void EvaluateFunctionMinNested()
+        {
+            double expected = Math.Min(3, Math.Min(45, 50));
+            double result = eval.Evaluate("min(3, min(45,50))");
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void EvaluateFunctionMinWithEmbeddedParenthesis()
+        {
+            double expected = Math.Min(3, (45 + 50));
+            double result = eval.Evaluate("min(3, (45+50))");
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void EvaluateFunctionMinWithinParenthesis()
+        {
+            double expected = (3 * Math.Min(45, 50));
+            double result = eval.Evaluate("(3 * Min(45,50))");
+
+            Assert.AreEqual(expected, result);
+        }  
 
         [Test]
         public void EvaluateFunctionMax()
@@ -139,7 +173,25 @@ namespace LoreSoft.MathExpressions.Tests
             double result = eval.Evaluate("max(45, 50)");
 
             Assert.AreEqual(expected, result);
+        }
 
+        [Test]
+        public void EvaluateFunctionMaxNested()
+        {
+            double expected = Math.Max(3, Math.Max(45, 50));
+            double result = eval.Evaluate("max(3, max(45,50))");
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestCase("2*45,")]
+        [TestCase("min(,2,3)")]
+        [TestCase("sin(3,)")]
+        [TestCase("min(min(3,4),,4)")]
+        [ExpectedException(typeof(ParseException))]
+        public void EvaluateMisplacedComma(string expr)
+        {
+            eval.Evaluate(expr);
         }
 
         [Test]

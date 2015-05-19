@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using LoreSoft.MathExpressions.Properties;
 using System.Globalization;
+using System.Linq;
 
 namespace LoreSoft.MathExpressions
 {
@@ -40,7 +41,7 @@ namespace LoreSoft.MathExpressions
         private Stack<double> _calculationStack;
         private Stack<double> _parameters;
         private List<string> _innerFunctions;
-
+        private uint _nestedFunctionDepth;
         private StringReader _expressionReader;
 
         /// <summary>
@@ -50,6 +51,7 @@ namespace LoreSoft.MathExpressions
         {
             _variables = new VariableDictionary(this);
             _innerFunctions = new List<string>(FunctionExpression.GetFunctionNames());
+            _innerFunctions.Sort();
             _functions = new ReadOnlyCollection<string>(_innerFunctions);
             _expressionCache = new Dictionary<string, IExpression>(StringComparer.OrdinalIgnoreCase);
             _symbolStack = new Stack<string>();
@@ -57,6 +59,7 @@ namespace LoreSoft.MathExpressions
             _buffer = new StringBuilder();
             _calculationStack = new Stack<double>();
             _parameters = new Stack<double>(2);
+            _nestedFunctionDepth = 0;
         }
 
         private VariableDictionary _variables;
@@ -100,6 +103,7 @@ namespace LoreSoft.MathExpressions
 
             _expressionReader = new StringReader(expression);
             _symbolStack.Clear();
+            _nestedFunctionDepth = 0;
             _expressionQueue.Clear();
 
             ParseExpressionToQueue();
@@ -245,6 +249,7 @@ namespace LoreSoft.MathExpressions
             if (IsFunction(_buffer.ToString()))
             {
                 _symbolStack.Push(_buffer.ToString());
+                _nestedFunctionDepth++;
                 return true;
             }
 
@@ -256,6 +261,11 @@ namespace LoreSoft.MathExpressions
             if (c != '(')
                 return false;
 
+            if (PeekNextNonWhitespaceChar() == ',')
+            {
+                throw new ParseException(Resources.InvalidCharacterEncountered + ",");
+            }
+
             _symbolStack.Push(c.ToString());
             return true;
         }
@@ -265,9 +275,32 @@ namespace LoreSoft.MathExpressions
             if (c != ',')
                 return false;
 
+            if (_nestedFunctionDepth <= 0)
+            {
+                throw new ParseException(Resources.InvalidCharacterEncountered + c);
+            }
+                        
+            char nextChar = PeekNextNonWhitespaceChar();
+            if (nextChar == ')' || nextChar == ',')
+            {
+                throw new ParseException(Resources.InvalidCharacterEncountered + c);
+            }
+
             return true;
         }
 
+        private char PeekNextNonWhitespaceChar()
+        {
+            char nextChar = (char) _expressionReader.Peek();
+            while (nextChar != -1 && char.IsWhiteSpace(nextChar))
+            {
+                _expressionReader.Read();
+                nextChar = (char) _expressionReader.Peek();
+            }
+            return nextChar;
+        }
+
+       
         private bool TryEndGroup(char c)
         {
             if (c != ')')
@@ -291,6 +324,7 @@ namespace LoreSoft.MathExpressions
                         p = _symbolStack.Pop();
                         IExpression f = GetExpressionFromSymbol(p);
                         _expressionQueue.Enqueue(f);
+                        _nestedFunctionDepth--;
                     }
 
                     break;
@@ -465,5 +499,6 @@ namespace LoreSoft.MathExpressions
         }
 
         #endregion
+        
     }
 }

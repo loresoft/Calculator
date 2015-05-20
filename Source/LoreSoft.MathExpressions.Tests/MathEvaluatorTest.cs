@@ -93,9 +93,8 @@ namespace LoreSoft.MathExpressions.Tests
         [Test]
         public void EvaluateComplexPower()
         {
-            //TODO: Fix pow support
             double expected = Math.Pow(1, 2) + 5 * 1 + 14;
-            double result = eval.Evaluate("1 ^ 2 + 5 * 1 + 14");
+            double result = eval.Evaluate("pow(1,2) + 5 * 1 + 14");
 
             Assert.AreEqual(expected, result);
         }
@@ -196,10 +195,18 @@ namespace LoreSoft.MathExpressions.Tests
         [TestCase("min(,2,3)")]
         [TestCase("sin(3,)")]
         [TestCase("min(min(3,4),,4)")]
+        [TestCase("min((1,2))")]
         [ExpectedException(typeof(ParseException))]
         public void EvaluateMisplacedComma(string expr)
         {
             eval.Evaluate(expr);
+        }
+
+        [Test, ExpectedException(typeof(ParseException))]
+        public void EvaluateFunctionHasTooManyArguments()
+        {
+            // This will result in 4 things being added to expression queue, when only 2 are expected by max function
+            eval.Evaluate("max(1,2,3,4)");
         }
 
         [Test]

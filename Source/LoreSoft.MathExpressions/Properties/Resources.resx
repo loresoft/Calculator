@@ -147,6 +147,9 @@
   <data name="InvalidOperator" xml:space="preserve">
     <value>Invalid operator: </value>
   </data>
+  <data name="InvalidArgumentCount" xml:space="preserve">
+    <value>Invalid number of arguments: </value>
+  </data>
   <data name="VariableNameConflict" xml:space="preserve">
     <value>The variable name conflicts with function '{0}'.</value>
   </data>

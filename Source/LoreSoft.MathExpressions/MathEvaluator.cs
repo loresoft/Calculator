@@ -42,6 +42,7 @@ namespace LoreSoft.MathExpressions
         private Stack<double> _parameters;
         private List<string> _innerFunctions;
         private uint _nestedFunctionDepth;
+        private uint _nestedGroupDepth;
         private StringReader _expressionReader;
         private VariableDictionary _variables;
         private ReadOnlyCollection<string> _functions;        
@@ -64,6 +65,7 @@ namespace LoreSoft.MathExpressions
             _calculationStack = new Stack<double>();
             _parameters = new Stack<double>(2);
             _nestedFunctionDepth = 0;
+            _nestedGroupDepth = 0;
         }
 
 
@@ -105,6 +107,7 @@ namespace LoreSoft.MathExpressions
             _expressionReader = new StringReader(expression);
             _symbolStack.Clear();
             _nestedFunctionDepth = 0;
+            _nestedGroupDepth = 0;
             _expressionQueue.Clear();
 
             ParseExpressionToQueue();
@@ -268,6 +271,7 @@ namespace LoreSoft.MathExpressions
             }
 
             _symbolStack.Push(_currentChar.ToString());
+            _nestedGroupDepth++;
             return true;
         }
 
@@ -276,7 +280,8 @@ namespace LoreSoft.MathExpressions
             if (_currentChar != ',')
                 return false;
 
-            if (_nestedFunctionDepth <= 0)
+            if (_nestedFunctionDepth <= 0 ||
+                _nestedFunctionDepth < _nestedGroupDepth)
             {
                 throw new ParseException(Resources.InvalidCharacterEncountered + _currentChar);
             }
@@ -309,7 +314,7 @@ namespace LoreSoft.MathExpressions
 
             bool hasStart = false;
 
-            while (_symbolStack.Count > 0)
+             while (_symbolStack.Count > 0)
             {
                 string p = _symbolStack.Pop();
                 if (p == "(")
@@ -327,6 +332,8 @@ namespace LoreSoft.MathExpressions
                         _expressionQueue.Enqueue(f);
                         _nestedFunctionDepth--;
                     }
+
+                    _nestedGroupDepth--; 
 
                     break;
                 }
@@ -467,6 +474,12 @@ namespace LoreSoft.MathExpressions
             }
 
             result = _calculationStack.Pop();
+
+            if (_calculationStack.Any())
+            {
+                throw new ParseException(String.Format("{0}Items '{1}' were remaining on calculation stack.", Resources.InvalidSymbolOnStack, string.Join(", ", _calculationStack)));
+            }
+
             return result;
         }
 

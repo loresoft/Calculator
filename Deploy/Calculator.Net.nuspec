@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Calculator.Net</id>
+        <version>1.0.0.0</version>
+        <title>Calculator.NET</title>
+        <authors>LoreSoft</authors>
+        <owners>LoreSoft</owners>
+        <iconUrl>https://raw.githubusercontent.com/loresoft/Calculator/master/calculator.png</iconUrl>
+        <licenseUrl>https://github.com/loresoft/Calculator</licenseUrl>
+        <projectUrl>https://github.com/loresoft/Calculator</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Calculator.NET - Calculator that evaluates math expressions</description>
+        <summary>Calculator.NET - Calculator that evaluates math expressions</summary>
+        <language>en-US</language>
+        <tags>calculator math conversion</tags>
+    </metadata>
+    <files>
+        <file src="chocolateyInstall.ps1" target="tools" />
+    </files>
+</package>

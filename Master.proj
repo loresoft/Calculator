@@ -124,8 +124,18 @@
     <Copy SourceFiles="$(SourceFolder)\LoreSoft.Calculator.Setup\bin\$(BuildConfiguration)\Calculator.msi"
           DestinationFiles="Calculator.v$(PackageVersion).msi" />
   </Target>
+  
+  <Target Name="Pack" DependsOnTargets="Version">
+    <FileUpdate Files="Deploy\chocolateyInstall.ps1"  
+                Regex="(\d+)\.(\d+)\.(\d+)\.(\d+)"
+                ReplacementText="$(PackageVersion)" />
+                
+    <NuGetPack File="Deploy\Calculator.Net.nuspec"
+               OutputDirectory="$(MSBuildProjectDirectory)"
+               Version="$(PackageVersion)" />
+  </Target>
 
-  <Target Name="Build" DependsOnTargets="Test;Zip;Installer"> 
+  <Target Name="Build" DependsOnTargets="Test;Zip;Installer;Pack"> 
   </Target>
 
 </Project>

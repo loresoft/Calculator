@@ -18,8 +18,8 @@
 [assembly: System.CLSCompliant(true)]
 [assembly: System.Reflection.AssemblyConfiguration("Release")]
 [assembly: System.Reflection.AssemblyVersion("1.2.0.0")]
-[assembly: System.Reflection.AssemblyFileVersion("1.2.0.36")]
-[assembly: System.Reflection.AssemblyInformationalVersion("1.2.0.36")]
+[assembly: System.Reflection.AssemblyFileVersion("1.2.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersion("1.2.0.0")]
 
 
 
@@ -41,9 +41,9 @@ internal sealed partial class ThisAssembly {
     
     internal const string AssemblyVersion = "1.2.0.0";
     
-    internal const string AssemblyFileVersion = "1.2.0.36";
+    internal const string AssemblyFileVersion = "1.2.0.0";
     
-    internal const string AssemblyInformationalVersion = "1.2.0.36";
+    internal const string AssemblyInformationalVersion = "1.2.0.0";
     
     private ThisAssembly() {
     }

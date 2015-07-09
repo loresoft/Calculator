@@ -7,7 +7,7 @@
         <authors>LoreSoft</authors>
         <owners>LoreSoft</owners>
         <iconUrl>https://raw.githubusercontent.com/loresoft/Calculator/master/calculator.png</iconUrl>
-        <licenseUrl>https://github.com/loresoft/Calculator</licenseUrl>
+        <licenseUrl>https://raw.githubusercontent.com/loresoft/Calculator/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/loresoft/Calculator</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>**Calculator.NET** - Calculator that evaluates math expressions. 

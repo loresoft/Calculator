@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Calculator.Net</id>
+        <version>1.0.0.0</version>
+        <title>Calculator.NET</title>
+        <authors>LoreSoft</authors>
+        <owners>LoreSoft</owners>
+        <iconUrl>https://raw.githubusercontent.com/loresoft/Calculator/master/calculator.png</iconUrl>
+        <licenseUrl>https://raw.githubusercontent.com/loresoft/Calculator/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/loresoft/Calculator</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>**Calculator.NET** - Calculator that evaluates math expressions. 
+
+![Calculator.NET](https://raw.githubusercontent.com/loresoft/Calculator/master/Documentation/Calculator.NET.png)
+
+### Calculator.NET Features
+
+* Evaluate math expressions with grouping
+* Support trigonometry and other function
+* Common unit conversion of types (Length, Mass, Speed, Temperature, Time, Volume)
+* Variable support including last answer
+
+Learn more at [https://github.com/loresoft/Calculator](https://github.com/loresoft/Calculator)
+</description>
+        <summary>Calculator.NET - Calculator that evaluates math expressions</summary>
+        <language>en-US</language>
+        <tags>calculator math conversion</tags>
+    </metadata>
+    <files>
+        <file src="chocolateyInstall.ps1" target="tools" />
+    </files>
+</package>

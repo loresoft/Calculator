@@ -138,6 +138,14 @@ namespace LoreSoft.MathExpressions.Tests
         }
 
         [Test]
+        public void EvaluateFunctionRound()
+        {
+            double expected = Math.Round(1.23456789, 4);
+            double result = eval.Evaluate("round(1.23456789, 4)");
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
         public void EvaluateFunctionMinMath()
         {
             double expected = Math.Min(45, 50) + 45;

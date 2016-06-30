@@ -24,7 +24,7 @@ namespace LoreSoft.MathExpressions
         /// <summary>The supported two argument math functions by this class.</summary>
         private static readonly string[] twoArgumentMathFunctions = new string[]
             {
-                "max", "min", "pow"
+                "max", "min", "pow", "round"
             };
 
         /// <summary>Initializes a new instance of the <see cref="FunctionExpression"/> class.</summary>

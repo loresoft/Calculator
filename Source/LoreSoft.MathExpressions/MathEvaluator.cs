@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using LoreSoft.MathExpressions.Properties;
 using System.Globalization;
+using System.Linq;
 
 namespace LoreSoft.MathExpressions
 {
@@ -40,8 +41,13 @@ namespace LoreSoft.MathExpressions
         private Stack<double> _calculationStack;
         private Stack<double> _parameters;
         private List<string> _innerFunctions;
-
+        private uint _nestedFunctionDepth;
+        private uint _nestedGroupDepth;
         private StringReader _expressionReader;
+        private VariableDictionary _variables;
+        private ReadOnlyCollection<string> _functions;        
+        private char _currentChar;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MathEvaluator"/> class.
@@ -50,6 +56,7 @@ namespace LoreSoft.MathExpressions
         {
             _variables = new VariableDictionary(this);
             _innerFunctions = new List<string>(FunctionExpression.GetFunctionNames());
+            _innerFunctions.Sort();
             _functions = new ReadOnlyCollection<string>(_innerFunctions);
             _expressionCache = new Dictionary<string, IExpression>(StringComparer.OrdinalIgnoreCase);
             _symbolStack = new Stack<string>();
@@ -57,9 +64,10 @@ namespace LoreSoft.MathExpressions
             _buffer = new StringBuilder();
             _calculationStack = new Stack<double>();
             _parameters = new Stack<double>(2);
+            _nestedFunctionDepth = 0;
+            _nestedGroupDepth = 0;
         }
 
-        private VariableDictionary _variables;
 
         /// <summary>
         /// Gets the variables collections.
@@ -69,8 +77,6 @@ namespace LoreSoft.MathExpressions
         {
             get { return _variables; }
         }
-
-        private ReadOnlyCollection<string> _functions;
 
         /// <summary>Gets the functions available to <see cref="MathEvaluator"/>.</summary>
         /// <value>The functions for <see cref="MathEvaluator"/>.</value>
@@ -100,6 +106,8 @@ namespace LoreSoft.MathExpressions
 
             _expressionReader = new StringReader(expression);
             _symbolStack.Clear();
+            _nestedFunctionDepth = 0;
+            _nestedGroupDepth = 0;
             _expressionQueue.Clear();
 
             ParseExpressionToQueue();
@@ -145,51 +153,54 @@ namespace LoreSoft.MathExpressions
 
         private void ParseExpressionToQueue()
         {
-            char l = '\0'; 
-            char c = '\0';
+            char lastChar = '\0'; 
+            _currentChar = '\0';
 
             do
             {
                 // last non white space char
-                if (!char.IsWhiteSpace(c))
-                    l = c;
+                if (!char.IsWhiteSpace(_currentChar))
+                    lastChar = _currentChar;
 
-                c = (char)_expressionReader.Read();
+                _currentChar = (char)_expressionReader.Read();
 
-                if (char.IsWhiteSpace(c))
+                if (char.IsWhiteSpace(_currentChar))
                     continue;
 
-                if (TryNumber(c, l))
+                if (TryNumber(lastChar))
                     continue;
 
-                if (TryString(c))
+                if (TryString())
                     continue;
 
-                if (TryStartGroup(c))
+                if (TryStartGroup())
                     continue;
 
-                if (TryOperator(c))
+                if (TryComma())
                     continue;
 
-                if (TryEndGroup(c))
+                if (TryOperator())
                     continue;
 
-                if (TryConvert(c))
+                if (TryEndGroup())
                     continue;
 
-                throw new ParseException(Resources.InvalidCharacterEncountered + c);
+                if (TryConvert())
+                    continue;
+
+                throw new ParseException(Resources.InvalidCharacterEncountered + _currentChar);
             } while (_expressionReader.Peek() != -1);
 
             ProcessSymbolStack();
         }
 
-        private bool TryConvert(char c)
+        private bool TryConvert()
         {
-            if (c != '[')
+            if (_currentChar != '[')
                 return false;
 
             _buffer.Length = 0;
-            _buffer.Append(c);
+            _buffer.Append(_currentChar);
 
             char p = (char)_expressionReader.Peek();
             while (char.IsLetter(p) || char.IsWhiteSpace(p) || p == '-' || p == '>' || p == ']')
@@ -215,16 +226,16 @@ namespace LoreSoft.MathExpressions
             throw new ParseException(Resources.InvalidConvertionExpression + _buffer);
         }
 
-        private bool TryString(char c)
+        private bool TryString()
         {
-            if (!char.IsLetter(c))
+            if (!char.IsLetter(_currentChar))
                 return false;
 
             _buffer.Length = 0;
-            _buffer.Append(c);
+            _buffer.Append(_currentChar);
 
             char p = (char)_expressionReader.Peek();
-            while (char.IsLetter(p))
+            while (char.IsLetter(p) || char.IsNumber(p))
             {
                 _buffer.Append((char)_expressionReader.Read());
                 p = (char)_expressionReader.Peek();
@@ -242,29 +253,68 @@ namespace LoreSoft.MathExpressions
             if (IsFunction(_buffer.ToString()))
             {
                 _symbolStack.Push(_buffer.ToString());
+                _nestedFunctionDepth++;
                 return true;
             }
 
             throw new ParseException(Resources.InvalidVariableEncountered + _buffer);
         }
 
-        private bool TryStartGroup(char c)
+        private bool TryStartGroup()
         {
-            if (c != '(')
+            if (_currentChar != '(')
                 return false;
 
-            _symbolStack.Push(c.ToString());
+            if (PeekNextNonWhitespaceChar() == ',')
+            {
+                throw new ParseException(Resources.InvalidCharacterEncountered + ",");
+            }
+
+            _symbolStack.Push(_currentChar.ToString());
+            _nestedGroupDepth++;
             return true;
         }
 
-        private bool TryEndGroup(char c)
+        private bool TryComma()
         {
-            if (c != ')')
+            if (_currentChar != ',')
+                return false;
+
+            if (_nestedFunctionDepth <= 0 ||
+                _nestedFunctionDepth < _nestedGroupDepth)
+            {
+                throw new ParseException(Resources.InvalidCharacterEncountered + _currentChar);
+            }
+                        
+            char nextChar = PeekNextNonWhitespaceChar();
+            if (nextChar == ')' || nextChar == ',')
+            {
+                throw new ParseException(Resources.InvalidCharacterEncountered + _currentChar);
+            }
+
+            return true;
+        }
+
+        private char PeekNextNonWhitespaceChar()
+        {
+            int next = _expressionReader.Peek();
+            while (next != -1 && char.IsWhiteSpace((char)next))
+            {
+                _expressionReader.Read();
+                next = _expressionReader.Peek();
+            }
+            return (char)next;
+        }
+
+       
+        private bool TryEndGroup()
+        {
+            if (_currentChar != ')')
                 return false;
 
             bool hasStart = false;
 
-            while (_symbolStack.Count > 0)
+             while (_symbolStack.Count > 0)
             {
                 string p = _symbolStack.Pop();
                 if (p == "(")
@@ -275,12 +325,15 @@ namespace LoreSoft.MathExpressions
                         break;
 
                     string n = _symbolStack.Peek();
-                    if (FunctionExpression.IsFunction(n))
+                    if (IsFunction(n))
                     {
                         p = _symbolStack.Pop();
                         IExpression f = GetExpressionFromSymbol(p);
                         _expressionQueue.Enqueue(f);
+                        _nestedFunctionDepth--;
                     }
+
+                    _nestedGroupDepth--; 
 
                     break;
                 }
@@ -295,13 +348,13 @@ namespace LoreSoft.MathExpressions
             return true;
         }
 
-        private bool TryOperator(char c)
+        private bool TryOperator()
         {
-            if (!OperatorExpression.IsSymbol(c))
+            if (!OperatorExpression.IsSymbol(_currentChar))
                 return false;
 
             bool repeat;
-            string s = c.ToString();
+            string s = _currentChar.ToString();
 
             do
             {
@@ -324,23 +377,24 @@ namespace LoreSoft.MathExpressions
             return true;
         }
 
-        private bool TryNumber(char c, char l)
+        private bool TryNumber(char lastChar)
         {
-            bool isNumber = NumberExpression.IsNumber(c);
+            bool isNumber = NumberExpression.IsNumber(_currentChar);
             // only negative when last char is group start or symbol
-            bool isNegative = NumberExpression.IsNegativeSign(c) &&
-                (l == '\0' || l == '(' || OperatorExpression.IsSymbol(l));
+            bool isNegative = NumberExpression.IsNegativeSign(_currentChar) &&
+                              (lastChar == '\0' || lastChar == '(' || OperatorExpression.IsSymbol(lastChar));
 
             if (!isNumber && !isNegative)
                 return false;
 
             _buffer.Length = 0;
-            _buffer.Append(c);
+            _buffer.Append(_currentChar);
 
             char p = (char)_expressionReader.Peek();
             while (NumberExpression.IsNumber(p))
             {
-                _buffer.Append((char)_expressionReader.Read());
+                _currentChar = (char) _expressionReader.Read();
+                _buffer.Append(_currentChar);
                 p = (char)_expressionReader.Peek();
             }
 
@@ -420,6 +474,12 @@ namespace LoreSoft.MathExpressions
             }
 
             result = _calculationStack.Pop();
+
+            if (_calculationStack.Any())
+            {
+                throw new ParseException(String.Format("{0}Items '{1}' were remaining on calculation stack.", Resources.InvalidSymbolOnStack, string.Join(", ", _calculationStack)));
+            }
+
             return result;
         }
 
@@ -454,5 +514,6 @@ namespace LoreSoft.MathExpressions
         }
 
         #endregion
+        
     }
 }

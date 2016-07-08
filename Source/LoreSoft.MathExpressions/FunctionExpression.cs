@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using LoreSoft.MathExpressions.Properties;
 using System.Globalization;
+using System.Linq;
 
 namespace LoreSoft.MathExpressions
 {
@@ -11,11 +13,18 @@ namespace LoreSoft.MathExpressions
     public class FunctionExpression : ExpressionBase
     {
         // must be sorted
-        /// <summary>The supported math functions by this class.</summary>
-        private static readonly string[] mathFunctions = new string[]
+        /// <summary>The supported single argument math functions by this class.</summary>
+        private static readonly string[] oneArgumentMathFunctions = new string[]
             {
                 "abs", "acos", "asin", "atan", "ceiling", "cos", "cosh", "exp",
                 "floor", "log", "log10", "sin", "sinh", "sqrt", "tan", "tanh"
+            };
+
+        // must be sorted
+        /// <summary>The supported two argument math functions by this class.</summary>
+        private static readonly string[] twoArgumentMathFunctions = new string[]
+            {
+                "max", "min", "pow", "round"
             };
 
         /// <summary>Initializes a new instance of the <see cref="FunctionExpression"/> class.</summary>
@@ -58,12 +67,19 @@ namespace LoreSoft.MathExpressions
         {
             base.Validate(numbers);
 
+            Type[] desiredMethodSignatureArgs = {typeof (double)};
+
+            if (IsTwoArgumentFunction(_function))
+            {
+                desiredMethodSignatureArgs = new []{typeof (double), typeof (double)};
+            }
+
             string function = char.ToUpperInvariant(_function[0]) + _function.Substring(1);
             MethodInfo method = typeof (Math).GetMethod(
                 function, 
                 BindingFlags.Static | BindingFlags.Public,
                 null,
-                new Type[] { typeof(double) },
+                desiredMethodSignatureArgs,
                 null);
 
             if (method == null)
@@ -80,7 +96,17 @@ namespace LoreSoft.MathExpressions
         /// <value>The argument count.</value>
         public override int ArgumentCount
         {
-            get { return 1; }
+            get
+            {
+                int rval = 1;
+
+                if (IsTwoArgumentFunction(_function))
+                {
+                    rval = 2;
+                }
+
+                return rval;
+            }
         }
 
         /// <summary>Determines whether the specified function name is a function.</summary>
@@ -88,9 +114,23 @@ namespace LoreSoft.MathExpressions
         /// <returns><c>true</c> if the specified name is a function; otherwise, <c>false</c>.</returns>
         public static bool IsFunction(string function)
         {
-            return (Array.BinarySearch(
-                        mathFunctions, function,
-                        StringComparer.OrdinalIgnoreCase) >= 0);
+            return IsOneArgumentFunction(function) || IsTwoArgumentFunction(function);
+        }
+
+        private static bool IsTwoArgumentFunction(string function)
+        {
+            bool isTwoArgumentFunction = Array.BinarySearch(
+                twoArgumentMathFunctions, function,
+                StringComparer.OrdinalIgnoreCase) >= 0;
+            return isTwoArgumentFunction;
+        }
+
+        private static bool IsOneArgumentFunction(string function)
+        {
+            bool isOneArgumentFunction = Array.BinarySearch(
+                oneArgumentMathFunctions, function,
+                StringComparer.OrdinalIgnoreCase) >= 0;
+            return isOneArgumentFunction;
         }
 
         /// <summary>Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.</summary>
@@ -107,7 +147,7 @@ namespace LoreSoft.MathExpressions
         /// <returns>An array of function names.</returns>
         public static string[] GetFunctionNames()
         {
-            return (string[])mathFunctions.Clone();
+            return oneArgumentMathFunctions.Concat(twoArgumentMathFunctions).ToArray();
         }
     }
 }
